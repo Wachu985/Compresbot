@@ -412,6 +412,7 @@ try:
 
 except Exception as ex:
     print(ex)
+    yturls = []
 
 print('Bot Iniciado')
 asyncio.run(bot.run())

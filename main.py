@@ -175,7 +175,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -199,7 +199,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -223,7 +223,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -247,7 +247,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -271,7 +271,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -295,7 +295,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -322,7 +322,7 @@ try:
                 await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
+                    up = await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -344,7 +344,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -365,6 +365,7 @@ try:
                 vid = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
                 yt = YouTube(vid)
                 stream = yt.streams.get_by_itag(vidval)
+                await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'⏬Descargando...')
                 file = stream.download(save)
                 msg = await bot.edit_message_text(msg.chat.id,msg.id,'✅Descargado Correctamente')

@@ -170,12 +170,12 @@ try:
             except asyncio.TimeoutError:
                 await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
             file = name.text + '.zip'
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -194,12 +194,12 @@ try:
                 await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
                 return
             file = name.text + '.zip'
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -218,12 +218,12 @@ try:
                 await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
                 return
             file = name.text + '.zip'
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -242,12 +242,12 @@ try:
                 await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
                 return
             file = name.text + '.zip'
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -266,12 +266,12 @@ try:
                 await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
                 return
             file = name.text + '.zip'
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -290,12 +290,12 @@ try:
                 await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
                 return
             file = name.text + '.zip'
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -314,12 +314,12 @@ try:
                 await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
                 return
             file = name.text + '.zip'
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -339,12 +339,12 @@ try:
                 return
             file = name.text + '.zip'
             await bot.send_message(msg.chat.id,'📚Comprimiendo')
-            msg = await msg.edit_text('Comprimiendo Archivos')
+            msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await msg.edit_text('⏫Subiendo '+subidas+' Partes')
+                await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -365,11 +365,11 @@ try:
                 vid = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
                 yt = YouTube(vid)
                 stream = yt.streams.get_by_itag(vidval)
-                msg = await msg.edit_text('⏬Descargando...')
+                msg = await bot.send_message(msg.chat.id,'⏬Descargando...')
                 file = stream.download(save)
-                msg = await msg.edit_text('✅Descargado Correctamente')
+                msg = await bot.edit_message_text(msg.chat.id,msg.id,'✅Descargado Correctamente')
                 #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
-                msg = await msg.edit_text('⏫Subiendo a Telegram')
+                msg = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo a Telegram')
                 await bot.send_video(msg.chat.id,file)
                 await msg.delete()
                 break

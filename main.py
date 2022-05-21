@@ -161,6 +161,8 @@ try:
                 await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                 os.remove('./'+file+'.'+str('%03d' % (cont)))
                 cont += 1 
+            await up.delete()
+            await bot.send_message(message.chat.id,'✅Subiendo Correctamente')
 
     #Llamadas al CallBack
     @bot.on_callback_query()

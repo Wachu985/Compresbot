@@ -145,10 +145,10 @@ try:
         file = title+'.zip'
         save = './'+message.chat.username+'/'+title+'/'
         out = list()
-        subidas = str(partes -1)
         for video in play.videos:
             out.append(video.streams.get_by_resolution('720p').download(save))
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
+        subidas = str(partes -1)
         if comprimio:
             cont = 1
             up = await bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes')

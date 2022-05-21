@@ -396,6 +396,7 @@ try:
                     yturls = []
                     break
                 elif os.path.getsize(file) > 1932735283:
+                    msg = await bot.send_message(msg.chat.id,'Comprimiendo Archivos')
                     comprimio,partes = split(compresion(file,save),'./',getBytes('1900MB'))
                     await msg.delete()
                     subidas = str(partes -1)

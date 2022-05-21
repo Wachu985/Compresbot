@@ -7,7 +7,7 @@ beautifulsoup4==4.11.1
 bs4==0.0.1
 certifi==2022.5.18.1
 charset-normalizer==2.0.12
-convopyro==0.1
+https://github.com/Ripeey/Conversation-Pyrogram/archive/refs/heads/main.zip
 frozenlist==1.3.0
 idna==3.3
 multidict==6.0.2

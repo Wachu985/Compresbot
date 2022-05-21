@@ -384,16 +384,31 @@ try:
                 stream = yt.streams.get_by_itag(vidval)
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'⏬Descargando...')
-                file = stream.download(save)
+                file = stream.download(save,timeout=250)
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
                 await msg.delete()
-                #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
-                msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram')
-                await bot.send_video(msg.chat.id,file,thumb='./Imagen.png')
-                await msg.delete()
-                yturls = []
-                break
+                if os.path.getsize(file) < 1932735283:
+                    #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
+                    msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram')
+                    await bot.send_video(msg.chat.id,file,thumb='./Imagen.png')
+                    await msg.delete()
+                    yturls = []
+                    break
+                elif os.path.getsize(file) > 1932735283:
+                    comprimio,partes = split(compresion(file,save),'./',getBytes('1900MB'))
+                    await msg.delete()
+                    subidas = str(partes -1)
+                    if comprimio:
+                        cont = 1
+                        up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
+                        while cont < partes:
+                            # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                            await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
+                            os.remove('./'+file+'.'+str('%03d' % (cont)))
+                            cont += 1 
+                        await up.delete()
+                    await bot.send_message(msg.chat.id,'✅Subido Correctamente') 
 
 except Exception as ex:
     print(ex)

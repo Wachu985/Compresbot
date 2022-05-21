@@ -1,4 +1,5 @@
 import asyncio
+from email import message
 from pyrogram import Client , dispatcher,filters
 import tgcrypto
 import os
@@ -234,7 +235,7 @@ try:
             subidas = str(partes -1)
             if comprimio:
                 cont = 1
-                up = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
@@ -271,7 +272,8 @@ try:
             msg = CallbackQuery.message
             zips = '500MB'
             save = './'+msg.chat.username+'/'
-            await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+            msg = await msg.send_message(msg.message.id,'🖌Escriba ahora el Nombre del Archivo:👇')
+            await msg.delete()
             try:
                 name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
             except asyncio.TimeoutError:

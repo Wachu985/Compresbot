@@ -10,7 +10,7 @@ from pytube import YouTube,Playlist
 
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
-bot_token  = '5286517799:AAFpgF2rFyMOjkNQDoDItAw3CynZ8Zt_d-Q'
+bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
 bot = Client("LocoBot", api_id, api_hash,bot_token=bot_token)
 
 

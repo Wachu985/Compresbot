@@ -65,11 +65,11 @@ def text_progres(index,max):
 	except Exception as ex:
 			return ''
 
-async def progressddl(current, total,message,bots):
-    await bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n")
+# async def progressddl(current, total,message,bots):
+#     await bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n")
 
-async def progressub(current, total,message,bots):
-    await bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
+# async def progressub(current, total,message,bots):
+#     await bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
 
 
 try:
@@ -83,7 +83,8 @@ try:
         try:
             save = './'+message.chat.username+'/'
             msg = await bot.send_message(message.chat.id,"📡Descargando Archivos",reply_to_message_id=message.id)
-            await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot))
+            # await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot))
+            await bot.download_media(message,save)
             await bot.edit_message_text(msg.chat.id,msg.id,'✅Descargado Correctamente')
         except:
             await bot.edit_message_text(msg.chat.id,msg.id,'❌Error de Descarga❌')
@@ -151,7 +152,8 @@ try:
             cont = 1
             up = await bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes')
             while cont < partes:
-                await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                # await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                 os.remove('./'+file+'.'+str('%03d' % (cont)))
                 cont += 1 
 
@@ -175,7 +177,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -197,7 +200,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    #await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -219,7 +223,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    #await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -241,7 +246,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    #await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -263,7 +269,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    #await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1
                 await up.delete() 
@@ -285,7 +292,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    #await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -307,7 +315,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    #await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -330,7 +339,8 @@ try:
                 cont = 1
                 up = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                 while cont < partes:
-                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    #await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
@@ -351,7 +361,8 @@ try:
                 msg = await msg.edit_text('⏬Descargando...')
                 file = stream.download(save)
                 msg = await msg.edit_text('✅Descargado Correctamente')
-                await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
+                #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
+                await bot.send_video(msg.chat.id,file)
                 await msg.delete()
                 break
 

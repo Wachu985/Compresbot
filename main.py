@@ -357,6 +357,7 @@ try:
             await client.listen.Cancel(filters.user(msg.from_user.id))
             await msg.delete()
         #Llamada de Descarga de Videos
+        global yturls
         for each in yturls:
             if CallbackQuery.data == each.split(sep=':')[0]:
                 msg = CallbackQuery.message

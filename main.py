@@ -130,7 +130,6 @@ try:
         button_list = []
         for each in yturls:
             button_list.append(InlineKeyboardButton(each.split(sep=':')[-1], callback_data = each.split(sep=':')[0]))
-        global keyboard_group
         keyboard_group=InlineKeyboardMarkup(build_menu(button_list, n_cols=3))
         text = 'Seleccione la Resolucion:👇'
         msg= await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=keyboard_group,reply_to_message_id=message.id) 

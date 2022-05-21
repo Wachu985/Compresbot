@@ -374,7 +374,6 @@ try:
                 msg = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo a Telegram')
                 await bot.send_video(msg.chat.id,file)
                 await msg.delete()
-                global yturls
                 yturls = []
                 break
 

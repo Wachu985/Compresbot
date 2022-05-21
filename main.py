@@ -13,7 +13,7 @@ api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
 bot = Client("LocoBot", api_id, api_hash,bot_token=bot_token)
 
-
+yturls = []
 Conversation(bot)
 # def progress_func(current,total,falta):
 #     print(f'{current * 100 / total:.1f}')
@@ -124,8 +124,8 @@ try:
         formats = yt.streams.filter(file_extension='mp4')
         formats = formats.order_by('resolution')
         title = yt.title 
-        yturls = []
         for f in formats:
+            global yturls
             yturls.append(str(str(f).split(sep=' ')[1].split(sep='"')[1]+':'+str(f).split(sep=' ')[3].split(sep='"')[1]))
         button_list = []
         for each in yturls:
@@ -373,6 +373,8 @@ try:
                 msg = await bot.edit_message_text(msg.chat.id,msg.id,'⏫Subiendo a Telegram')
                 await bot.send_video(msg.chat.id,file)
                 await msg.delete()
+                global yturls
+                yturls = []
                 break
 
 except Exception as ex:

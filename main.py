@@ -149,8 +149,10 @@ try:
         for video in play.videos:
             out.append(video.streams.get_by_resolution('720p').download(save))
         msg.delete()
+        msg = await bot.send_message(message.chat.id,'Comprimiendo Archivos')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
         subidas = str(partes -1)
+        msg.delete()
         if comprimio:
             cont = 1
             up = await bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes')

@@ -390,7 +390,7 @@ try:
                 await msg.delete()
                 #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
                 msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram')
-                await bot.send_video(msg.chat.id,file)
+                await bot.send_video(msg.chat.id,file,thumb='./Imagen.png')
                 await msg.delete()
                 yturls = []
                 break

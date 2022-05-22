@@ -132,7 +132,6 @@ try:
         formats = formats.order_by('resolution')
         title = yt.title 
         for f in formats:
-            global yturls
             yturls.append(str(str(f).split(sep=' ')[1].split(sep='"')[1]+':'+str(f).split(sep=' ')[3].split(sep='"')[1]))
         button_list = []
         for each in yturls:

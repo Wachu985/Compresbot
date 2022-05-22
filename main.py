@@ -84,7 +84,7 @@ try:
     async def archivos(client,message):
         try:
             save = './'+message.chat.username+'/'
-            msg = await bot.send_message(message.chat.id,"📡Descargando Archivos",reply_to_message_id=message.id)
+            msg = await bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             # await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot))
             await bot.download_media(message,save)
             await msg.delete()
@@ -180,7 +180,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '20MB'
                 save = './'+msg.chat.username+'/'
-                await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+                await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:
@@ -208,7 +209,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '50MB'
                 save = './'+msg.chat.username+'/'
-                await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+                await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:
@@ -237,7 +239,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '100MB'
                 save = './'+msg.chat.username+'/'
-                await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+                await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:
@@ -266,7 +269,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '200MB'
                 save = './'+msg.chat.username+'/'
-                await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+                await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:
@@ -295,8 +299,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '500MB'
                 save = './'+msg.chat.username+'/'
-                msg = await msg.send_message(msg.message.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:
@@ -325,7 +329,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '1000MB'
                 save = './'+msg.chat.username+'/'
-                await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+                await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:
@@ -354,7 +359,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '1500MB'
                 save = './'+msg.chat.username+'/'
-                await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+                await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:
@@ -383,7 +389,8 @@ try:
                 msg = CallbackQuery.message
                 zips = '2000MB'
                 save = './'+msg.chat.username+'/'
-                await msg.edit_text('🖌Escriba ahora el Nombre del Archivo:👇')
+                await msg.delete()
+                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
                 try:
                     name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
                 except asyncio.TimeoutError:

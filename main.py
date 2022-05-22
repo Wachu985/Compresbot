@@ -6,7 +6,7 @@ from shutil import rmtree
 from compress import compresion, split, getBytes
 from convopyro import Conversation 
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery
-from pytube import YouTube,Playlist
+from youtubedl import download,info,downloadlist
 
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
@@ -126,15 +126,12 @@ try:
     async def ytdl(client,message):
         global yturls
         yturls = []
-        yt = YouTube(message.command[-1])
-        formats = yt.streams.filter(file_extension='mp4')
-        formats = formats.order_by('resolution')
-        title = yt.title 
-        for f in formats:
-            yturls.append(str(str(f).split(sep=' ')[1].split(sep='"')[1]+':'+str(f).split(sep=' ')[3].split(sep='"')[1]))
+        yt = info(message.command[-1])
+        for f in yt:
+            yturls.append(f.split(sep=':'))
         button_list = []
         for each in yturls:
-            button_list.append(InlineKeyboardButton(each.split(sep=':')[-1], callback_data = each.split(sep=':')[0]))
+            button_list.append(InlineKeyboardButton(each[1], callback_data = each[0]))
         keyboard_group=InlineKeyboardMarkup(build_menu(button_list, n_cols=3))
         text = 'Seleccione la Resolucion:👇'
         msg= await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=keyboard_group,reply_to_message_id=message.id) 
@@ -143,15 +140,12 @@ try:
     async def ytlist(client,message):
         playlist = message.command[1]
         zips = message.command[-1]+'MB'
+        res = message.command[2]
+        username = message.chat.username
         try:
-            play = Playlist(playlist)
-            title = play.title
+            msg = await bot.send_message(message.chat.id,'⏫Descargando Videos... Por Favor Espere')
+            save,title = downloadlist(playlist,res,username)
             file = title+'.zip'
-            save = './'+message.chat.username+'/'+title+'/'
-            out = list()
-            msg = await bot.send_message(message.chat.id,'⏫Descargando Videos')
-            for video in play.videos:
-                out.append(video.streams.get_by_resolution('720p').download(save))
             await msg.delete()
             msg = await bot.send_message(message.chat.id,'📚Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
@@ -159,14 +153,14 @@ try:
             await msg.delete()
             if comprimio:
                 cont = 1
-                up = await bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes')
+                up = await bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes...')
                 while cont < partes:
                     # await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()
-                await bot.send_message(message.chat.id,'✅Subiendo Correctamente')
+                await bot.send_message(message.chat.id,'✅Subido Correctamente')
         except Exception as e:
             await msg.delete()
             await bot.send_message(message.chat.id,f'❌Error al Descargar la Lista❌ {e}')
@@ -423,16 +417,13 @@ try:
         for each in yturls:
             if CallbackQuery.data == each.split(sep=':')[0]:
                 msg = CallbackQuery.message
-                vidval = int(CallbackQuery.data)
-                save = './'+msg.chat.username+'/'
-                vid = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
-                yt = YouTube(vid)
-                thb = yt.thumbnail_url
-                stream = yt.streams.get_by_itag(vidval)
+                format = CallbackQuery.data
+                username = msg.chat.username
+                url = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'⏬Descargando... Por favor Espere')
                 try:
-                    file = stream.download(save,timeout=250)
+                    file = download(url,username,format)
                     await msg.delete()
                     msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
                     await msg.delete()
@@ -453,8 +444,9 @@ try:
                             await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
                     elif os.path.getsize(file) > 1572864000:
                         try:
+                            sub = file.split(sep='/')[-1]
                             msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
-                            comprimio,partes = split(compresion(file,save),'./',getBytes('1500MB'))
+                            comprimio,partes = split(compresion(sub,file),'./',getBytes('1500MB'))
                             await msg.delete()
                             subidas = str(partes -1)
                             if comprimio:
@@ -462,8 +454,8 @@ try:
                                 msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                                 while cont < partes:
                                     # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
-                                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
-                                    os.remove('./'+file+'.'+str('%03d' % (cont)))
+                                    await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')
+                                    os.remove('./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)))
                                     cont += 1 
                                 await msg.delete()
                             await bot.send_message(msg.chat.id,'✅Subido Correctamente')

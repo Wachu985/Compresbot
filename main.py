@@ -430,41 +430,42 @@ try:
                 except Exception as e:
                     await  msg.delete()
                     await bot.send_message(msg.chat.id,f'❌Error al Descargar de Youtube❌ {e}')
-                print(file)
-                if os.path.exists(file):
-                    if os.path.getsize(file) < 1572864000:
-                        try:
-                            #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
-                            msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
-                            await bot.send_video(msg.chat.id,file,thumb='./Imagen.png')
-                            await msg.delete()
-                            yturls = []
-                            break
-                        except Exception as e:
-                            await msg.delete()
-                            await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
-                    elif os.path.getsize(file) > 1572864000:
-                        try:
-                            sub = file.split(sep='/')[-1]
-                            msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
-                            comprimio,partes = split(compresion(sub,file),'./',getBytes('1500MB'))
-                            await msg.delete()
-                            subidas = str(partes -1)
-                            if comprimio:
-                                cont = 1
-                                msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
-                                while cont < partes:
-                                    # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
-                                    await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')
-                                    os.remove('./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)))
-                                    cont += 1 
+                if '||' in file:
+                    file = file.replace('||','_')
+                    if os.path.exists(file):
+                        if os.path.getsize(file) < 1572864000:
+                            try:
+                                #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
+                                msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
+                                await bot.send_video(msg.chat.id,file,thumb='./Imagen.png')
                                 await msg.delete()
-                            await bot.send_message(msg.chat.id,'✅Subido Correctamente')
-                        except Exception as e:
-                            await msg.delete()
-                            await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
-                else:
-                    await bot.send_message(msg.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
+                                yturls = []
+                                break
+                            except Exception as e:
+                                await msg.delete()
+                                await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
+                        elif os.path.getsize(file) > 1572864000:
+                            try:
+                                sub = file.split(sep='/')[-1]
+                                msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
+                                comprimio,partes = split(compresion(sub,file),'./',getBytes('1500MB'))
+                                await msg.delete()
+                                subidas = str(partes -1)
+                                if comprimio:
+                                    cont = 1
+                                    msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
+                                    while cont < partes:
+                                        # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                                        await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')
+                                        os.remove('./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)))
+                                        cont += 1 
+                                    await msg.delete()
+                                await bot.send_message(msg.chat.id,'✅Subido Correctamente')
+                            except Exception as e:
+                                await msg.delete()
+                                await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
+                    else:
+                        await bot.send_message(msg.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
                 
                     
 

@@ -1,4 +1,4 @@
-import youtube_dl
+import yt_dlp
 from pyrogram import Client , dispatcher,filters
 import tgcrypto
 import asyncio
@@ -15,7 +15,7 @@ def my_hook(d):
 
 def info(url):
     ydl_opts = {}
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         meta = ydl.extract_info(
             url, download=False)
 
@@ -44,7 +44,7 @@ def download(url,username,format):
         'outtmpl': file
     }
 
-    with youtube_dl.YoutubeDL(opcions) as ydl:
+    with yt_dlp.YoutubeDL(opcions) as ydl:
         ydl.download([url])
         meta = ydl.extract_info(url, download=False)
         name = './'+username+'/'+str(meta['title'])+'.mp4'
@@ -55,7 +55,7 @@ def downloadlist(urls,res,username):
     ydl_opts = {
         'format': f'best[height<={res}]',
         'outtmpl': file}
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([urls])
         meta = ydl.extract_info(urls, download=False)
         dir = './'+username+'/'+str(meta['title'])+'/'

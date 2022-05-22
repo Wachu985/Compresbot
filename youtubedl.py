@@ -41,8 +41,7 @@ def download(url,username,format):
     file = './'+username+'/%(title)s.%(ext)s'
     opcions = {
         'format': format,
-        'outtmpl': file,
-        'progress_hooks': [my_hook],
+        'outtmpl': file
     }
 
     with youtube_dl.YoutubeDL(opcions) as ydl:
@@ -55,8 +54,7 @@ def downloadlist(urls,res,username):
     file = './'+username+'/%(playlist)s/%(title)s.%(ext)s'
     ydl_opts = {
         'format': f'best[height<={res}]',
-        'outtmpl': file,
-        'progress_hooks': [my_hook],}
+        'outtmpl': file}
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([urls])
         meta = ydl.extract_info(urls, download=False)

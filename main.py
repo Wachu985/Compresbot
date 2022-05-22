@@ -1,5 +1,4 @@
 import asyncio
-from email import message
 from pyrogram import Client , dispatcher,filters
 import tgcrypto
 import os
@@ -203,7 +202,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente')
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
         elif CallbackQuery.data == 'z50':
             try:
                 msg = CallbackQuery.message
@@ -232,7 +231,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente') 
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}') 
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}') 
         elif CallbackQuery.data == 'z100':
             try:
                 msg = CallbackQuery.message
@@ -261,7 +260,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente') 
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
         elif CallbackQuery.data == 'z200':
             try:
                 msg = CallbackQuery.message
@@ -290,7 +289,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente') 
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
         elif CallbackQuery.data == 'z500':
             try:
                 msg = CallbackQuery.message
@@ -320,7 +319,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente') 
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
         elif CallbackQuery.data == 'z1000':
             try:
                 msg = CallbackQuery.message
@@ -349,7 +348,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente')
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')  
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')  
         elif CallbackQuery.data == 'z1500':
             try:
                 msg = CallbackQuery.message
@@ -378,7 +377,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente') 
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}') 
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}') 
         elif CallbackQuery.data == 'z2000':
             try:
                 msg = CallbackQuery.message
@@ -407,7 +406,7 @@ try:
                 await bot.send_message(msg.chat.id,'✅Subido Correctamente')  
             except Exception as e:
                 await  msg.delete()
-                await bot.send_message(message.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
+                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
         elif CallbackQuery.data =='stop':
             msg = CallbackQuery.message 
             await client.listen.Cancel(filters.user(msg.from_user.id))
@@ -432,19 +431,19 @@ try:
                     await msg.delete()
                 except Exception as e:
                     await  msg.delete()
-                    await bot.send_message(message.chat.id,f'❌Error al Descargar de Youtube❌ {e}')
+                    await bot.send_message(msg.chat.id,f'❌Error al Descargar de Youtube❌ {e}')
                 if os.path.exists(file):
                     if os.path.getsize(file) < 1572864000:
                         try:
                             #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
                             msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
-                            await bot.send_video(msg.chat.id,file,thumb=thb)
+                            await bot.send_video(msg.chat.id,file,thumb='./Imagen.png')
                             await msg.delete()
                             yturls = []
                             break
                         except Exception as e:
                             await msg.delete()
-                            await bot.send_message(message.chat.id,f'❌Error al Subir a Telegram❌ {e}')
+                            await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
                     elif os.path.getsize(file) > 1572864000:
                         try:
                             msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
@@ -463,9 +462,9 @@ try:
                             await bot.send_message(msg.chat.id,'✅Subido Correctamente')
                         except Exception as e:
                             await msg.delete()
-                            await bot.send_message(message.chat.id,f'❌Error al Subir a Telegram❌ {e}')
+                            await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
                 else:
-                    await bot.send_message(message.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
+                    await bot.send_message(msg.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
                 
                     
 

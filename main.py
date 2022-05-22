@@ -415,7 +415,7 @@ try:
         #Llamada de Descarga de Videos
         global yturls
         for each in yturls:
-            if CallbackQuery.data == each.split(sep=':')[0]:
+            if CallbackQuery.data == each[0]:
                 msg = CallbackQuery.message
                 format = CallbackQuery.data
                 username = msg.chat.username

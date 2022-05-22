@@ -41,14 +41,14 @@ def download(url,username,format):
     file = './'+username+'/%(title)s.%(ext)s'
     opcions = {
         'format': format,
-        'outtmpl': file
+        'outtmpl': file,
+        'forcefilename':'True'
     }
 
     with yt_dlp.YoutubeDL(opcions) as ydl:
         ydl.download([url])
         meta = ydl.extract_info(url, download=False)
-        #name = './'+username+'/'+str(meta['title'])+'.mp4'
-        name = '%(title)s.%(ext)s'
+        name = './'+username+'/'+str(meta['title'])+'.mp4'
     return name
 
 def downloadlist(urls,res,username):

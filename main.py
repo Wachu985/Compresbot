@@ -110,8 +110,8 @@ try:
     #Comando Mostrar Directorio
     @bot.on_message(filters.command('elem') & filters.private)
     async def elem(client,message):
-        # save = './'+message.chat.username+'/'
-        save = './'
+        save = './'+message.chat.username+'/'
+        # save = './'
         if os.path.exists(save):
             oslist = os.listdir(save)
             cont = 1
@@ -448,7 +448,7 @@ try:
                         elif os.path.getsize(file) > 1572864000:
                             try:
                                 string = file.split(sep='/')[:-1]
-                                sub = str(file.split(sep='/')[-1])+'.zip'
+                                sub = str(file.split(sep='/')[-1].split(sep='.')[0])+'.zip'
                                 dir = ''
                                 for f in string:
                                     dir += f+'/'

@@ -15,7 +15,8 @@ def my_hook(d):
 
 def info(url):
     ydl_opts = {
-        'restrict_filenames':True
+        'restrict_filenames':True,
+        'windowsfilenames':False
         }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         meta = ydl.extract_info(
@@ -40,11 +41,12 @@ def info(url):
     return guardar   
 
 def download(url,username,format):
-    file = './'+username+'/title.%(ext)s'
+    file = './'+username+'/%(title)s.%(ext)s'
     opcions = {
         'format': format,
         'outtmpl': file,
-        'restrict_filenames':True
+        'restrict_filenames':True,
+        'windowsfilenames':False
     }
 
     with yt_dlp.YoutubeDL(opcions) as ydl:
@@ -59,7 +61,8 @@ def downloadlist(urls,res,username):
     ydl_opts = {
         'format': f'best[height<={res}]',
         'outtmpl': file,
-        'restrict_filenames':True}
+        'restrict_filenames':False,
+        'windowsfilenames':False}
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([urls])
         meta = ydl.extract_info(urls, download=False)

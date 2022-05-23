@@ -135,7 +135,7 @@ def compressionone(file:str,dir:str):
         file = file
     else:
         file = 'nuevo.zip'
-    with ZipFile('./'+file, 'w') as myzip:
+    with ZipFile(file, 'w') as myzip:
         myzip.write(dir)
     return './'+ file
     

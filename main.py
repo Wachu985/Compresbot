@@ -460,7 +460,7 @@ try:
                                     msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                                     while cont < partes:
                                         # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
-                                        await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
+                                        await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')
                                         os.remove('./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)))
                                         cont += 1 
                                     await msg.delete()

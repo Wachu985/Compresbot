@@ -40,7 +40,7 @@ def info(url):
     return guardar   
 
 def download(url,username,format):
-    file = './'+username+'/%(title)s.%(ext)s'
+    file = './'+username+'/title.%(ext)s'
     opcions = {
         'format': format,
         'outtmpl': file,

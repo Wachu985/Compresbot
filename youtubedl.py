@@ -22,7 +22,7 @@ def slugify(value, allow_unicode=False):
     else:
         value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
     value = re.sub(r'[^\w\s-]', '', value.lower())
-    return re.sub(r'[-\s]+', '-', value).strip('-_') + '.' + ext
+    return re.sub(r'[-\s]+', '-', value).strip('-_')
 
 
 
@@ -72,7 +72,7 @@ def getTitle(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         meta = ydl.extract_info(
             url, download=False)
-        title = str(meta['title'])+ids
+        title = meta['title']+ids
         return slugify(title)
 
 def getPlaylist(url):

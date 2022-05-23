@@ -432,8 +432,6 @@ try:
                 except Exception as e:
                     await  msg.delete()
                     await bot.send_message(msg.chat.id,f'❌Error al Descargar de Youtube❌ {e}')
-                if '||' in file:
-                    file = file.replace('||','_')
                 if os.path.exists(file):
                     if os.path.getsize(file) < 1572864000:
                         try:

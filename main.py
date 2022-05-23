@@ -3,7 +3,7 @@ from pyrogram import Client , dispatcher,filters
 import tgcrypto
 import os
 from shutil import rmtree
-from compress import compresion, split, getBytes
+from compress import compresion, split, getBytes,compressionone
 from convopyro import Conversation 
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery
 from youtubedl import download,info,downloadlist
@@ -452,7 +452,7 @@ try:
                                 for f in string:
                                     dir += f+'/'
                                 msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
-                                comprimio,partes = split(compresion(sub,dir),'./',getBytes('1500MB'))
+                                comprimio,partes = split(compressionone(sub,file),'./',getBytes('1500MB'))
                                 await msg.delete()
                                 subidas = str(partes -1)
                                 if comprimio:

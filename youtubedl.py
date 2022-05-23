@@ -2,6 +2,28 @@ import yt_dlp
 from pyrogram import Client , dispatcher,filters
 import tgcrypto
 import asyncio
+import unicodedata
+import random
+import re
+
+def slugify(value, allow_unicode=False):
+    """
+    Taken from https://github.com/django/django/blob/master/django/utils/text.py
+    Convert to ASCII if 'allow_unicode' is False. Convert spaces or repeated
+    dashes to single dashes. Remove characters that aren't alphanumerics,
+    underscores, or hyphens. Convert to lowercase. Also strip leading and
+    trailing whitespace, dashes, and underscores.
+    """
+    value = str(value)
+    ext = str(value).split('.')[-1]
+    value = str(value).split('.')[0]
+    if allow_unicode:
+        value = unicodedata.normalize('NFKC', value)
+    else:
+        value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+    value = re.sub(r'[^\w\s-]', '', value.lower())
+    return re.sub(r'[-\s]+', '-', value).strip('-_') + '.' + ext
+
 
 
 def my_hook(d):
@@ -39,7 +61,10 @@ def info(url):
     for val1,val2,val3 in zip(id,ext,formato): 
         guardar.append(val1 +':'+val3 + ':'+val2)
     return guardar   
+
 def getTitle(url):
+    elem = 'abcdefgh1jklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ids = "".join(random.sample(elem,4))
     ydl_opts = {
         'restrict_filenames':True,
         'windowsfilenames':False
@@ -47,8 +72,9 @@ def getTitle(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         meta = ydl.extract_info(
             url, download=False)
-        title = str(meta['title'])
-        return title
+        title = str(meta['title'])+ids
+        return slugify(title)
+
 def getPlaylist(url):
     ydl_opts = {
         'restrict_filenames':True,
@@ -57,8 +83,8 @@ def getPlaylist(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         meta = ydl.extract_info(
             url, download=False)
-        playlist = str(meta['playlist'])
-        return playlist
+        playlist = str(meta['title'])
+        return slugify(playlist)
 def download(url,username,format):
     title = getTitle(url)
     file = './'+username+'/'+title+'.%(ext)s'
@@ -86,7 +112,6 @@ def downloadlist(urls,res,username):
         'windowsfilenames':False}
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([urls])
-        meta = ydl.extract_info(urls, download=False)
         dir = './'+username+'/'+playlist+'/'
         name = playlist
         return dir,name

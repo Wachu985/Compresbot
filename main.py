@@ -428,6 +428,7 @@ try:
                     await msg.delete()
                     msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
                     await msg.delete()
+                    print(file)
                 except Exception as e:
                     await  msg.delete()
                     await bot.send_message(msg.chat.id,f'❌Error al Descargar de Youtube❌ {e}')

@@ -49,6 +49,16 @@ def getTitle(url):
             url, download=False)
         title = str(meta['title'])
         return title
+def getPlaylist(url):
+    ydl_opts = {
+        'restrict_filenames':True,
+        'windowsfilenames':False
+        }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        meta = ydl.extract_info(
+            url, download=False)
+        playlist = str(meta['playlist'])
+        return playlist
 def download(url,username,format):
     title = getTitle(url)
     file = './'+username+'/'+title+'.%(ext)s'
@@ -67,7 +77,8 @@ def download(url,username,format):
     return name,duration
 
 def downloadlist(urls,res,username):
-    file = './'+username+'/%(playlist)s/%(title)s.%(ext)s'
+    playlist = getPlaylist(urls)
+    file = './'+username+'/'+playlist+'/%(title)s.%(ext)s'
     ydl_opts = {
         'format': f'best[height<={res}]',
         'outtmpl': file,

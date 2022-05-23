@@ -20,7 +20,7 @@ def info(url):
         }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         meta = ydl.extract_info(
-            url, download=False)
+            url, download=True)
 
     formats = meta['formats']
     locura = {}
@@ -51,7 +51,7 @@ def download(url,username,format):
 
     with yt_dlp.YoutubeDL(opcions) as ydl:
         ydl.download([url])
-        meta = ydl.extract_info(url, download=False)
+        meta = ydl.extract_info(url, download=True)
         name = './'+username+'/'+str(meta['title'])+'.mp4'
         duration = int(meta['duration'])
     return name,duration
@@ -65,7 +65,7 @@ def downloadlist(urls,res,username):
         'windowsfilenames':False}
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([urls])
-        meta = ydl.extract_info(urls, download=False)
+        meta = ydl.extract_info(urls, download=True)
         dir = './'+username+'/'+str(meta['title'])+'/'
         name = str(meta['title'])
         return dir,name

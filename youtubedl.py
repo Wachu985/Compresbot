@@ -87,7 +87,7 @@ def downloadlist(urls,res,username):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([urls])
         meta = ydl.extract_info(urls, download=False)
-        dir = './'+username+'/'+str(meta['title'])+'/'
-        name = str(meta['title'])
+        dir = './'+username+'/'+playlist+'/'
+        name = playlist
         return dir,name
     

@@ -468,8 +468,8 @@ try:
                         except Exception as e:
                             await msg.delete()
                             await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
-                    else:
-                        await bot.send_message(msg.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
+                else:
+                    await bot.send_message(msg.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
                 
                     
 

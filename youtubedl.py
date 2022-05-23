@@ -98,7 +98,7 @@ def download(url,username,format):
     with yt_dlp.YoutubeDL(opcions) as ydl:
         ydl.download([url])
         meta = ydl.extract_info(url, download=False)
-        name = './'+username+'/'+str(meta['title'])+'.mp4'
+        name = './'+username+'/'+title+'.mp4'
         duration = int(meta['duration'])
     return name,duration
 

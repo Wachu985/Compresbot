@@ -127,15 +127,18 @@ try:
     async def ytdl(client,message):
         global yturls
         yturls = []
-        yt = info(message.command[-1])
-        for f in yt:
-            yturls.append(f.split(sep=':'))
-        button_list = []
-        for each in yturls:
-            button_list.append(InlineKeyboardButton(each[1], callback_data = each[0]))
-        keyboard_group=InlineKeyboardMarkup(build_menu(button_list, n_cols=3))
-        text = 'Seleccione la Resolucion:👇'
-        msg= await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=keyboard_group,reply_to_message_id=message.id) 
+        try:
+            yt = info(message.command[-1])
+            for f in yt:
+                yturls.append(f.split(sep=':'))
+            button_list = []
+            for each in yturls:
+                button_list.append(InlineKeyboardButton(each[1], callback_data = each[0]))
+            keyboard_group=InlineKeyboardMarkup(build_menu(button_list, n_cols=3))
+            text = 'Seleccione la Resolucion:👇'
+            msg= await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=keyboard_group,reply_to_message_id=message.id) 
+        except Exception as e:
+            await bot.send_message(message.chat.id,f'❌Error al Analizar el Video❌-> {e}')
     #Comando Descargar Lista de Youtube
     @bot.on_message(filters.command('ytlist') & filters.private)
     async def ytlist(client,message):

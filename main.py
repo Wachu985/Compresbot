@@ -446,9 +446,13 @@ try:
                                 await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
                         elif os.path.getsize(file) > 1572864000:
                             try:
-                                sub = file.split(sep='/')[-1]
+                                string = file.split(sep='/')[:-1]
+                                sub = str(file.split(sep='/')[-1])+'.zip'
+                                dir = ''
+                                for f in string:
+                                    dir += f+'/'
                                 msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
-                                comprimio,partes = split(compresion(sub,file),'./',getBytes('1500MB'))
+                                comprimio,partes = split(compresion(sub,dir),'./',getBytes('1500MB'))
                                 await msg.delete()
                                 subidas = str(partes -1)
                                 if comprimio:

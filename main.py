@@ -424,7 +424,7 @@ try:
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'⏬Descargando... Por favor Espere')
                 try:
-                    file = download(url,username,format)
+                    file,duration = download(url,username,format)
                     await msg.delete()
                     msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
                     await msg.delete()
@@ -438,7 +438,7 @@ try:
                         try:
                             #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
                             msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
-                            await bot.send_video(msg.chat.id,file,thumb='./Imagen.png')
+                            await bot.send_video(msg.chat.id,file,thumb='./Imagen.png',duration=duration)
                             await msg.delete()
                             yturls = []
                             break

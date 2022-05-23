@@ -51,7 +51,8 @@ def download(url,username,format):
         ydl.download([url])
         meta = ydl.extract_info(url, download=False)
         name = './'+username+'/'+str(meta['title'])+'.mp4'
-    return name
+        duration = int(meta['duration'])
+    return name,duration
 
 def downloadlist(urls,res,username):
     file = './'+username+'/%(playlist)s/%(title)s.%(ext)s'

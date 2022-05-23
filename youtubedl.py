@@ -76,6 +76,8 @@ def getTitle(url):
         return slugify(title)
 
 def getPlaylist(url):
+    elem = 'abcdefgh1jklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ids = "".join(random.sample(elem,4))
     ydl_opts = {
         'restrict_filenames':True,
         'windowsfilenames':False
@@ -83,7 +85,7 @@ def getPlaylist(url):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         meta = ydl.extract_info(
             url, download=False)
-        playlist = str(meta['title'])
+        playlist = str(meta['title'])+ids
         return slugify(playlist)
 def download(url,username,format):
     title = getTitle(url)

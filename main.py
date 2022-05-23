@@ -88,7 +88,7 @@ try:
             # await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot))
             await bot.download_media(message,save)
             await msg.delete()
-            msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
+            msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)
         except Exception as e:
             await msg.delete()
             await bot.send_message(msg.chat.id,f'❌Error de Descarga❌ {e}')

@@ -52,13 +52,14 @@ def info(url):
     for format in formats:
         if 'DASH' in str(format['format']):
             continue
-        # elif 'mp4' == str(format['ext']):  
-        elif 'none' in str(format['audio_ext'])  :  
+        # elif 'mp4' == str(format['ext']):
+        elif 'vp9' in str(format['vcodec']):
             continue
         else:
             id.append(format['format_id'])
             ext.append(format['ext'])
             formato.append(format['format'].split(sep='-')[-1])
+
     cont = 0
     guardar = []
     for val1,val2,val3 in zip(id,ext,formato): 

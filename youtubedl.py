@@ -94,8 +94,9 @@ def getPlaylist(url):
 def download(url,username,format):
     title = getTitle(url)
     file = './'+username+'/'+title+'.%(ext)s'
+    format = format.split(sep=('('))[-1].replace(')','')
     opcions = {
-        'format': f'b<=[{format}]',
+        'format': f'b[height<={format}]',
         'outtmpl': file,
         'restrict_filenames':True,
         'windowsfilenames':False

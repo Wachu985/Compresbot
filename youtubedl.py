@@ -53,7 +53,9 @@ def info(url):
         if 'DASH' in str(format['format']):
             continue
         # elif 'mp4' == str(format['ext']):  
-        else:  
+        elif 'none' in str(format['audio_ext'])  :  
+            continue
+        else:
             id.append(format['format_id'])
             ext.append(format['ext'])
             formato.append(format['format'].split(sep='-')[-1])

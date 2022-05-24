@@ -422,7 +422,7 @@ try:
             if CallbackQuery.data == each[0]:
                 msg = CallbackQuery.message
                 format = each[1]
-                ext = each[-1]
+                # ext = each[-1]
                 username = msg.chat.username
                 url = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
                 await msg.delete()

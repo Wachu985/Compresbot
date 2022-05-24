@@ -95,7 +95,7 @@ def download(url,username,format):
     title = getTitle(url)
     file = './'+username+'/'+title+'.%(ext)s'
     opcions = {
-        'format': format,
+        'format': f'b<=[{format}]',
         'outtmpl': file,
         'restrict_filenames':True,
         'windowsfilenames':False

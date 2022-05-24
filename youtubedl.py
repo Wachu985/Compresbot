@@ -53,7 +53,7 @@ def info(url):
         if 'DASH' in str(format['format']):
             continue
         # elif 'mp4' == str(format['ext']):
-        elif 'vp9' in str(format['vcodec']):
+        elif 'avc1.4d401e' in str(format['vcodec']):
             continue
         else:
             id.append(format['format_id'])

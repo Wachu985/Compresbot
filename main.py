@@ -430,7 +430,7 @@ try:
                 try:
                     file,duration = download(url,username,format)
                     await msg.delete()
-                    file += '.'+ext
+                    # file += '.'+ext
                     msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
                     await msg.delete()
                     print(file)

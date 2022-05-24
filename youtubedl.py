@@ -52,7 +52,8 @@ def info(url):
     for format in formats:
         if 'DASH' in str(format['format']):
             continue
-        elif 'mp4' == str(format['ext']):    
+        # elif 'mp4' == str(format['ext']):  
+        else:  
             id.append(format['format_id'])
             ext.append(format['ext'])
             formato.append(format['format'].split(sep='-')[-1])
@@ -100,7 +101,7 @@ def download(url,username,format):
     with yt_dlp.YoutubeDL(opcions) as ydl:
         ydl.download([url])
         meta = ydl.extract_info(url, download=False)
-        name = './'+username+'/'+title+'.mp4'
+        name = './'+username+'/'+title
         duration = int(meta['duration'])
     return name,duration
 
@@ -108,7 +109,7 @@ def downloadlist(urls,res,username):
     playlist = getPlaylist(urls)
     file = './'+username+'/'+playlist+'/%(title)s.%(ext)s'
     ydl_opts = {
-        'format': f'best[height<={res}]',
+        'format': f'b[height<={res}]',
         'outtmpl': file,
         'restrict_filenames':False,
         'windowsfilenames':False}

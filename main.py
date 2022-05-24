@@ -422,6 +422,7 @@ try:
             if CallbackQuery.data == each[0]:
                 msg = CallbackQuery.message
                 format = CallbackQuery.data
+                ext = each[-1]
                 username = msg.chat.username
                 url = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
                 await msg.delete()
@@ -429,6 +430,7 @@ try:
                 try:
                     file,duration = download(url,username,format)
                     await msg.delete()
+                    file += '.'+ext
                     msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
                     await msg.delete()
                     print(file)

@@ -7,9 +7,9 @@ routes_files = Blueprint("routes_files",__name__)
 PATH_FILES = os.getcwd()
 print(PATH_FILES)
 
-# @app.route('/')
-# def index():
-#     return render_template('index.html')
+@app.route('/')
+def index():
+    return 'Hello Mundo'
 
 @routes_files.get("/<string:username>/<string:name_files>")
 def getFiles(name_files,username):

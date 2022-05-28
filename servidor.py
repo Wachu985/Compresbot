@@ -15,7 +15,7 @@ def index():
 def getFiles(name_files,username):
     if './'+username+'/'+name_files:
         print('Existe')
-    return send_from_directory('./'+username+'/',name_files)
+    return send_from_directory(path= './'+username,filename= name_files)
 
 
 servidor.register_blueprint(routes_files)

@@ -19,7 +19,7 @@ def return_files_tut(username,filename):
         return send_file(file_path+filename, as_attachment=True, attachment_filename='')
     else:
         
-        return os.listdir('/app/')
+        return tuple(os.listdir('/app/'))
 
 # @routes_files.route("/<string:username>/<string:name_files>",methods=['GET'])
 # def getFiles(name_files,username):

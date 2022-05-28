@@ -13,7 +13,7 @@ def index():
 
 @servidor.route('/<username>/<filename>')
 def return_files_tut(username,filename):
-    file_path = PATH_FILES +username+'/'+filename
+    file_path = PATH_FILES +'/'+username+'/'+filename
     print(file_path)
     return send_file(file_path, as_attachment=True, attachment_filename='')
 

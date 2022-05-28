@@ -110,8 +110,8 @@ try:
     #Comando Mostrar Directorio
     @bot.on_message(filters.command('ls') & filters.private)
     async def elem(client,message):
-        save = './'+message.chat.username+'/'
-        # save = './'
+        # save = './'+message.chat.username+'/'
+        save = './'
         if os.path.exists(save):
             oslist = os.listdir(save)
             cont = 1

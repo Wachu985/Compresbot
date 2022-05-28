@@ -3,7 +3,7 @@ import os
 
 servidor = Flask(__name__)
 # routes_files = Blueprint("routes_files",__name__)
-
+servidor.debug = True
 PATH_FILES = os.getcwd()
 print(PATH_FILES)
 
@@ -28,4 +28,4 @@ def return_files_tut(username,filename):
 
 # servidor.register_blueprint(routes_files)
 if __name__ == '__main__':
-    servidor.run(threaded=True,port = '4000',debug=True)
+    servidor.run(threaded=True,port = '4000')

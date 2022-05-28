@@ -1,2 +1,2 @@
 worker: python3 main.py
-web: gunicorn servidor.py
+web: gunicorn servidor:servidor

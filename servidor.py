@@ -1,13 +1,13 @@
 from flask import Flask,render_template,Blueprint,request,send_from_directory
 import os 
 
-app = Flask(__name__)
+servidor = Flask(__name__)
 routes_files = Blueprint("routes_files",__name__)
 
 PATH_FILES = os.getcwd()
 print(PATH_FILES)
 
-@app.route('/')
+@servidor.route('/')
 def index():
     return 'Hello Mundo'
 
@@ -18,7 +18,7 @@ def getFiles(name_files,username):
     else:
         return 
 
-app.register_blueprint(routes_files)
+servidor.register_blueprint(routes_files)
 
 if __name__ == '__main__':
-    app.run(debug=True,host= '0.0.0.0',port = '4000')
+    servidor.run(threaded=True,port = '4000')

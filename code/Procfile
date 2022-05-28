@@ -1,1 +1,1 @@
-worker: python3 -m code
+web: python3 -m code

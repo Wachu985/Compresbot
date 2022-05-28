@@ -484,6 +484,5 @@ except Exception as ex:
     yturls = []
 
 print('Bot Iniciado')
-servidor = server.run()
 asyncio.run(bot.run())
 

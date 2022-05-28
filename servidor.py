@@ -37,4 +37,4 @@ def return_files_tut(username,filename):
 
 # servidor.register_blueprint(routes_files)
 if __name__ == '__main__':
-    servidor.run(threaded=True,port = '4000')
+    servidor.run(port = '4000')

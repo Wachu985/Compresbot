@@ -489,7 +489,7 @@ if __name__=='__main__':
     print('Bot Iniciado')
     bot.loop.run_until_complete(bot.run())
     print('iniciando server')
-    app.register_blueprint(routes_files)
-    app.run(debug=True,port = '4000')
+    # app.register_blueprint(routes_files)
+    # app.run(debug=True,port = '4000')
 
 

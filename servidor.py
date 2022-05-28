@@ -18,7 +18,7 @@ def return_files_tut(username,filename):
     if os.path.exists(file_path):
         return send_file(file_path, as_attachment=True, attachment_filename='')
     else:
-        return 'Pinga no Esta'
+        return 'Pinga no Esta '+file_path
 
 # @routes_files.route("/<string:username>/<string:name_files>",methods=['GET'])
 # def getFiles(name_files,username):

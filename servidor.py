@@ -15,7 +15,10 @@ def index():
 def return_files_tut(username,filename):
     file_path = username+'/'+filename
     print(file_path)
-    return send_file(file_path, as_attachment=True, attachment_filename='')
+    if os.path.exists(file_path):
+        return send_file(file_path, as_attachment=True, attachment_filename='')
+    else:
+        return 'Pinga no Esta'
 
 # @routes_files.route("/<string:username>/<string:name_files>",methods=['GET'])
 # def getFiles(name_files,username):

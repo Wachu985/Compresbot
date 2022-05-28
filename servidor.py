@@ -11,7 +11,7 @@ print(PATH_FILES)
 def index():
     return 'Hello Mundo'
 
-@routes_files.get("/<string:username>/<string:name_files>")
+@routes_files.route("/<string:username>/<string:name_files>",methods=['GET'])
 def getFiles(name_files,username):
     if PATH_FILES+'/'+username+'/'+name_files:
         print('Existe')

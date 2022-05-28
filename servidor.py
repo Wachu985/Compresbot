@@ -11,7 +11,7 @@ print(PATH_FILES)
 def index():
     return 'Hello Mundo'
 
-@servidor.route('/<username>/<filename>')
+@servidor.route('/dl/<username>/<filename>')
 def return_files_tut(username,filename):
     file_path = username+'/'+filename
     print(file_path)

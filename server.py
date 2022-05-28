@@ -16,8 +16,9 @@ def getFiles(name_files,username):
     if os.path.exists(PATH_FILES+'/'+username+'/'+name_files):
         return send_from_directory(PATH_FILES+'/'+username,name_files,as_attachment = True)
     else:
-        return 'ERROR'
+        return 
 
+app.register_blueprint(routes_files)
 
-
-    
+if __name__ == '__main__':
+    app.run(debug=True,port = '4000')

@@ -7,7 +7,7 @@ from compress import compresion, split, getBytes,compressionone
 from convopyro import Conversation 
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery
 from youtubedl import download,info,downloadlist
-from server import app,routes_files
+import server 
 
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
@@ -484,6 +484,6 @@ except Exception as ex:
     yturls = []
 
 print('Bot Iniciado')
+servidor = server.run()
 asyncio.run(bot.run())
-app.register_blueprint(routes_files)
-app.run(debug=True,port = '5000')
+

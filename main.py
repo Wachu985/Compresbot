@@ -111,7 +111,7 @@ try:
     @bot.on_message(filters.command('ls') & filters.private)
     async def elem(client,message):
         # save = './'+message.chat.username+'/'
-        save = './'
+        save = '/app'
         if os.path.exists(save):
             oslist = os.listdir(save)
             cont = 1

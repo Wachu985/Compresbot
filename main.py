@@ -487,9 +487,11 @@ except Exception as ex:
 if __name__=='__main__':
     # asyncio.run(bot.run())
     print('Bot Iniciado')
-    bot.loop.run_until_complete(bot.run())
+    
+    
+    app.register_blueprint(routes_files)
+    app.run(debug=True,port = '4000')
     print('iniciando server')
-    # app.register_blueprint(routes_files)
-    # app.run(debug=True,port = '4000')
+    bot.loop.run_until_complete(bot.run())
 
 

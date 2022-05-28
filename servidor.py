@@ -13,10 +13,10 @@ def index():
 
 @servidor.route('/dl/<username>/<filename>')
 def return_files_tut(username,filename):
-    file_path = '/app/'+username+'/'+filename
+    file_path = '/app/'+username+'/'
     print(file_path)
     if os.path.exists(file_path):
-        return send_file(file_path, as_attachment=True, attachment_filename='')
+        return send_file(file_path+filename, as_attachment=True, attachment_filename='')
     else:
         return 'Pinga no Esta '+file_path
 

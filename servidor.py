@@ -13,6 +13,8 @@ def index():
 
 @routes_files.get("/<string:username>/<string:name_files>")
 def getFiles(name_files,username):
+    if PATH_FILES+'/'+username+'/'+name_files:
+        print('Existe')
     return send_from_directory(PATH_FILES+'/'+username,name_files,as_attachment = True)
 
 

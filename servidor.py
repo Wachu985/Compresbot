@@ -13,10 +13,12 @@ def index():
 
 @routes_files.route("/<string:username>/<string:name_files>",methods=['GET'])
 def getFiles(name_files,username):
-    if './'+username+'/'+name_files:
-        print('Existe')
-    return send_from_directory('./'+username,path=name_files,as_attachment = True)
-
+    try:
+        if './'+username+'/'+name_files:
+            print('Existe')
+        return send_from_directory('./'+username,path=name_files,as_attachment = True)
+    except Exception as e:
+        return e
 
 servidor.register_blueprint(routes_files)
 if __name__ == '__main__':

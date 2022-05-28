@@ -19,6 +19,7 @@ def return_files_tut(username,filename):
         return send_file(file_path+filename, as_attachment=True, attachment_filename='')
     else:
         lista=os.listdir('/app/')
+        msg = ''
         for f in lista:
             msg += str(cont)+'-'+str(f)+'\n'
             cont +=1 

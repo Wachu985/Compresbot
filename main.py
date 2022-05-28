@@ -483,7 +483,8 @@ except Exception as ex:
     print(ex)
     yturls = []
 
-print('Bot Iniciado')
+
 app.register_blueprint(routes_files)
-app.run(debug=True,host = '0.0.0.0',port = '4000')
+app.run(debug=True,port = '5000')
+print('Bot Iniciado')
 asyncio.run(bot.run())

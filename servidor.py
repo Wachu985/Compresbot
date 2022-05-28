@@ -20,4 +20,4 @@ def getFiles(name_files,username):
 
 servidor.register_blueprint(routes_files)
 if __name__ == '__main__':
-    servidor.run(threaded=True,port = '4000')
+    servidor.run(threaded=True,port = '4000',debug=True)

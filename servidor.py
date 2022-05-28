@@ -18,8 +18,11 @@ def return_files_tut(username,filename):
     if os.path.exists(file_path):
         return send_file(file_path+filename, as_attachment=True, attachment_filename='')
     else:
-        
-        return tuple(os.listdir('/app/'))
+        lista=os.listdir('/app/')
+        for f in lista:
+            msg += str(cont)+'-'+str(f)+'\n'
+            cont +=1 
+        return msg
 
 # @routes_files.route("/<string:username>/<string:name_files>",methods=['GET'])
 # def getFiles(name_files,username):

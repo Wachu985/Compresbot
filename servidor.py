@@ -13,9 +13,9 @@ def index():
 
 @routes_files.route("/<string:username>/<string:name_files>",methods=['GET'])
 def getFiles(name_files,username):
-    if PATH_FILES+'/'+username+'/'+name_files:
+    if './'+username+'/'+name_files:
         print('Existe')
-    return send_from_directory(PATH_FILES+'/'+username,name_files)
+    return send_from_directory('./'+username+'/',name_files)
 
 
 servidor.register_blueprint(routes_files)

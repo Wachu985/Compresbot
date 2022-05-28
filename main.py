@@ -108,7 +108,7 @@ try:
         else:
             await bot.send_message(message.chat.id,'🚫No se Pudo Eliminar el Directorio Correctamente Por que no Existe🚫')
     #Comando Mostrar Directorio
-    @bot.on_message(filters.command('elem') & filters.private)
+    @bot.on_message(filters.command('ls') & filters.private)
     async def elem(client,message):
         save = './'+message.chat.username+'/'
         # save = './'

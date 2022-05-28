@@ -490,8 +490,8 @@ if __name__=='__main__':
     
     
     app.register_blueprint(routes_files)
-    app.run(debug=True,port = '4000')
+    app.run(debug=False,port = '4000')
     print('iniciando server')
-    bot.loop.run_until_complete(bot.run())
+    asyncio.run(bot.run())
 
 

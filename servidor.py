@@ -20,6 +20,7 @@ def return_files_tut(username,filename):
     else:
         lista=os.listdir('/app/')
         msg = ''
+        cont = 1
         for f in lista:
             msg += str(cont)+'-'+str(f)+'\n'
             cont +=1 

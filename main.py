@@ -489,9 +489,9 @@ if __name__=='__main__':
     print('Bot Iniciado')
     
     
-    app.register_blueprint(routes_files)
-    app.run(debug=False,port = '4000',host='0.0.0.0')
-    print('iniciando server')
+    # app.register_blueprint(routes_files)
+    # app.run(debug=False,port = '80',host='0.0.0.0')
+    # print('iniciando server')
     asyncio.run(bot.run())
 
 

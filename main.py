@@ -498,9 +498,9 @@ if __name__=='__main__':
     
     # bot.start()
     # ejecute()
-    w.run()
+    w.start()
     # asyncio.run(bot.run())
-    t.run()  
+    t.start()  
     
 
 

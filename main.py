@@ -493,9 +493,9 @@ def ejecutar ():
     ejecute()
 
 if __name__=='__main__':
-    # asyncio.run(bot.run())
+    asyncio.run(bot.run())
     # asyncio.run(ejecutar())
-    ejecutar()
+    # ejecutar()
     
 
 

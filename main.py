@@ -505,7 +505,7 @@ if __name__=='__main__':
     # app.run(debug=False,port = '80',host='0.0.0.0')
     # print('iniciando server')
     w = threading.Thread(name='worker', target=ejecute)
-    t = threading.Thread(name='my_service', target= bot.run)
+    t = threading.Thread(name='my_service', target= ejecutar)
     
     # bot.start()
     # ejecute()

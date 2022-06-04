@@ -509,9 +509,11 @@ if __name__=='__main__':
     
     # bot.start()
     # ejecute()
-    w.start().run()
+    w.start()
     # asyncio.run(bot.run())
-    t.start().run()
+    t.start()
+    w.run()
+    t.run()
     # proceso1 = Process(target=ejecute)
     # proceso2 = Process(target=bot.start)
     # proceso1.start()

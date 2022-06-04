@@ -497,9 +497,9 @@ if __name__=='__main__':
     # loop.run_until_complete(ejecutar())
     # asyncio.run(bot.run())
     # ejecute()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(asyncio.run(ejecutar()))
-    
+    # loop = asyncio.get_event_loop()
+    # loop.run_until_complete(asyncio.run(ejecutar()))
+    asyncio.run(bot.run())
     # loop.run_forever()
     # print('Iniciando Bot....')
     

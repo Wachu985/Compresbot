@@ -8,6 +8,7 @@ from compress import compresion, split, getBytes,compressionone
 from convopyro import Conversation 
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery
 from youtubedl import download,info,downloadlist
+import threading
 
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
@@ -492,7 +493,11 @@ if __name__=='__main__':
     # app.register_blueprint(routes_files)
     # app.run(debug=False,port = '80',host='0.0.0.0')
     # print('iniciando server')
-    ejecute()
-    asyncio.run(bot.run())
+    t = threading.Thread(name='my_service', target=ejecute)
+    w = threading.Thread(name='worker', target=asyncio.run(bot.run()))
+    # ejecute()
+    # asyncio.run(bot.run())
+    w.start()
+    t.start()
 
 

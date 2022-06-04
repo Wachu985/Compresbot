@@ -9,6 +9,7 @@ from convopyro import Conversation
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery
 from youtubedl import download,info,downloadlist
 import threading
+import time
 from multiprocessing import Process
 
 loop = asyncio.get_event_loop()
@@ -70,10 +71,12 @@ def text_progres(index,max):
 			return ''
 
 async def progressddl(current, total,message,bots):
+    time.sleep(3)
     await message.delete()
     await bots.send_message(message.chat.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n")
 
 async def progressub(current, total,message,bots):
+    time.sleep(3)
     await message.delete()
     await bots.send_message(message.chat.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
 
@@ -89,8 +92,8 @@ try:
         try:
             save = './'+message.chat.username+'/'
             msg = await bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
-            # await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot))
-            await bot.download_media(message,save)
+            await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot))
+            # await bot.download_media(message,save)
             await msg.delete()
             msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)
         except Exception as e:
@@ -488,7 +491,7 @@ except Exception as ex:
 
 
 if __name__=='__main__':
-    # asyncio.run(bot.run())
+    asyncio.run(bot.run())
     print('Iniciando Bot....')
     
     
@@ -508,11 +511,11 @@ if __name__=='__main__':
     # proceso1.start()
     # print('Bot Iniciado')
     # proceso2.start()
-    loop.create_task(ejecute())
-    loop.create_task(asyncio.run(bot.run()))
+    # loop.create_task(ejecute())
+    # loop.create_task(asyncio.run(bot.run()))
 
-    loop.run_forever()
-    loop.close()
+    # loop.run_forever()
+    # loop.close()
     
 
 

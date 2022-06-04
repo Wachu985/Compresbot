@@ -12,7 +12,7 @@ import threading
 import time
 from multiprocessing import Process
 
-loop = asyncio.get_event_loop()
+# loop = asyncio.get_event_loop()
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -73,8 +73,7 @@ def text_progres(index,max):
 async def progressddl(current, total,message,bots):
     time.sleep(3)
     #await message.delete()
-    # await bots.send_message(message.chat.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
-    message.edit_text(f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n"())
+    await bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
 async def progressub(current, total,message,bots):
     time.sleep(3)
     await message.delete()

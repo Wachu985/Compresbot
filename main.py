@@ -490,6 +490,7 @@ except Exception as ex:
 
 
 if __name__=='__main__':
+    ejecute()
     asyncio.run(bot.run())
     print('Iniciando Bot....')
     

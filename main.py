@@ -503,7 +503,7 @@ if __name__=='__main__':
     # asyncio.run(bot.run())
     # t.start()  
     proceso1 = Process(target=ejecute)
-    proceso2 = Process(target=asyncio.run(bot.run()))
+    proceso2 = Process(target=bot.run())
 
     proceso1.start()
     proceso2.start()

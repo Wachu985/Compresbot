@@ -488,7 +488,7 @@ except Exception as ex:
 
 if __name__=='__main__':
     # asyncio.run(bot.run())
-    print('Bot Iniciado')
+    print('Iniciando Bot....')
     
     
     # app.register_blueprint(routes_files)
@@ -502,11 +502,17 @@ if __name__=='__main__':
     # w.start()
     # asyncio.run(bot.run())
     # t.start()  
-    proceso1 = Process(target=ejecute)
-    proceso2 = Process(target=bot.start)
+    # proceso1 = Process(target=ejecute)
+    # proceso2 = Process(target=bot.start)
+    # proceso1.start()
+    # print('Bot Iniciado')
+    # proceso2.start()
+    loop = asyncio.get_event_loop()
+    loop.create_task(ejecute())
+    loop.create_task(asyncio.run(bot.run()))
 
-    proceso1.start()
-    proceso2.start()
+    loop.run_forever()
+    loop.close()
     
 
 

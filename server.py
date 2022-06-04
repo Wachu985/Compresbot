@@ -49,5 +49,3 @@ def ejecute():
 
     loop.close()
 
-if __name__=='__main__':
-    ejecute()

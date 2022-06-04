@@ -489,7 +489,7 @@ except Exception as ex:
     yturls = []
 
 async def ejecutar ():
-    await bot.start()
+    await bot.run()
 
 if __name__=='__main__':
     

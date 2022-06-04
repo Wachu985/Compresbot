@@ -9,6 +9,7 @@ from convopyro import Conversation
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery
 from youtubedl import download,info,downloadlist
 import threading
+from multiprocessing import Process
 
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
@@ -493,14 +494,19 @@ if __name__=='__main__':
     # app.register_blueprint(routes_files)
     # app.run(debug=False,port = '80',host='0.0.0.0')
     # print('iniciando server')
-    w = threading.Thread(name='worker', target=ejecute)
-    t = threading.Thread(name='my_service', target=bot.run)
+    # w = threading.Thread(name='worker', target=ejecute)
+    # t = threading.Thread(name='my_service', target= asyncio.run(bot.run()))
     
     # bot.start()
     # ejecute()
-    w.start()
+    # w.start()
     # asyncio.run(bot.run())
-    t.start()  
+    # t.start()  
+    proceso1 = Process(target=ejecute)
+    proceso2 = Process(target=asyncio.run(bot.run()))
+
+    proceso1.start()
+    proceso2.start()
     
 
 

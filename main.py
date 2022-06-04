@@ -493,7 +493,8 @@ async def ejecutar ():
     await ejecute()
 
 if __name__=='__main__':
-    asyncio.run(ejecutar())
+    asyncio.run(bot.start())
+    asyncio.run(ejecute())
     
 
 

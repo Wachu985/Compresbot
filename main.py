@@ -493,40 +493,7 @@ async def ejecutar ():
     ejecute()
 
 if __name__=='__main__':
-    # loop = asyncio.get_event_loop()
-    # loop.run_until_complete(ejecutar())
-    # asyncio.run(bot.run())
-    # ejecute()
-    # loop = asyncio.get_event_loop()
-    # loop.run_until_complete(asyncio.run(ejecutar()))
-    asyncio.run(bot.run())
-    # loop.run_forever()
-    # print('Iniciando Bot....')
-    
-    
-    # app.register_blueprint(routes_files)
-    # app.run(debug=False,port = '80',host='0.0.0.0')
-    # print('iniciando server')
-    # w = threading.Thread(name='worker', target=ejecute)
-    # t = threading.Thread(name='my_service', target= ejecutar)
-    
-    # bot.start()
-    # ejecute()
-    # w.start()
-    # asyncio.run(bot.run())
-    # t.start()
-    # w.run()
-    # t.run()
-    # proceso1 = Process(target=ejecute)
-    # proceso2 = Process(target=bot.start)
-    # proceso1.start()
-    # print('Bot Iniciado')
-    # proceso2.start()
-    # loop.create_task(ejecute())
-    # loop.create_task(asyncio.run(bot.run()))
-
-    # loop.run_forever()
-    # loop.close()
+    asyncio.run(ejecutar())
     
 
 

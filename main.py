@@ -72,9 +72,9 @@ def text_progres(index,max):
 
 async def progressddl(current, total,message,bots):
     time.sleep(3)
-    await message.delete()
-    await bots.send_message(message.chat.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n")
-
+    #await message.delete()
+    # await bots.send_message(message.chat.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
+    message.edit_text(f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n"())
 async def progressub(current, total,message,bots):
     time.sleep(3)
     await message.delete()

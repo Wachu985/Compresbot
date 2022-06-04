@@ -488,12 +488,13 @@ except Exception as ex:
     print(ex)
     yturls = []
 
-async def ejecutar ():
-    await bot.run()
-    await ejecute()
+# async def ejecutar ():
+#     await bot.run()
+#     await ejecute()
 
 if __name__=='__main__':
-    asyncio.run(ejecutar())
+    # asyncio.run(bot.run())
+    asyncio.run(ejecute())
     
 
 

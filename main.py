@@ -17,7 +17,7 @@ api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
 bot = Client("LocoBot", api_id, api_hash,bot_token=bot_token)
-
+new = 0
 yturls = []
 Conversation(bot)
 # def progress_func(current,total,falta):
@@ -70,14 +70,9 @@ def text_progres(index,max):
 	except Exception as ex:
 			return ''
 
-async def progressddl(current, total,message,bots):
-    time.sleep(1)
-    
-    #message = await bots.send_message(message.chat.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")    
-    #await message.delete()
+async def progressddl(current, total,message,bots,start):
     await bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
 async def progressub(current, total,message,bots):
-    time.sleep(3)
     await message.delete()
     await bots.send_message(message.chat.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
 
@@ -87,25 +82,29 @@ try:
     @bot.on_message(filters.command('start') & filters.private)
     async def welcome(client,message):
         await bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
-    
+
+    #Descargar Media de Telegram
     @bot.on_message(filters.media & filters.private)
     async def archivos(client,message):
         try:
             save = './'+message.chat.username+'/'
             msg = await bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
-            await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot))
+            start = time.time()
+            await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))
             # await bot.download_media(message,save)
             await msg.delete()
             msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)
         except Exception as e:
             await msg.delete()
             await bot.send_message(msg.chat.id,f'❌Error de Descarga❌ {e}')
+    
     #Comando Zips
     @bot.on_message(filters.command('zips') & filters.private)
     async def compress(client,message):
         text = MESSAGE_COMPRIMIDO
         reply_botton = InlineKeyboardMarkup(MESSAGE_COMPRIMIDO_BOTTON)
         msg=await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=reply_botton,reply_to_message_id=message.id)
+    
     #Comando Eliminar Directorio
     @bot.on_message(filters.command('elimreg') & filters.private)
     async def delete(client,message):
@@ -115,6 +114,7 @@ try:
             await bot.send_message(message.chat.id,'💢Eliminado el Directorio Correctamente💢')
         else:
             await bot.send_message(message.chat.id,'🚫No se Pudo Eliminar el Directorio Correctamente Por que no Existe🚫')
+    
     #Comando Mostrar Directorio
     @bot.on_message(filters.command('ls') & filters.private)
     async def elem(client,message):
@@ -130,6 +130,8 @@ try:
             await bot.send_message(message.chat.id,msg)
         else:
             await bot.send_message(message.chat.id,'🚫No tienes ningun Elemento🚫')
+    
+    
     #Comando Descargar Video de Youtube
     @bot.on_message(filters.command('ytvid') & filters.private)
     async def ytdl(client,message):
@@ -147,6 +149,8 @@ try:
             msg= await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=keyboard_group,reply_to_message_id=message.id) 
         except Exception as e:
             await bot.send_message(message.chat.id,f'❌Error al Analizar el Video❌-> {e}')
+    
+    
     #Comando Descargar Lista de Youtube
     @bot.on_message(filters.command('ytlist') & filters.private)
     async def ytlist(client,message):
@@ -424,6 +428,7 @@ try:
             msg = CallbackQuery.message 
             await client.listen.Cancel(filters.user(msg.from_user.id))
             await msg.delete()
+        
         #Llamada de Descarga de Videos
         global yturls
         for each in yturls:

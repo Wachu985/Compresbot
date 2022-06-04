@@ -3,6 +3,7 @@ from pyrogram import Client , dispatcher,filters
 import tgcrypto
 import os
 from shutil import rmtree
+from server import ejecute
 from compress import compresion, split, getBytes,compressionone
 from convopyro import Conversation 
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQuery
@@ -491,6 +492,7 @@ if __name__=='__main__':
     # app.register_blueprint(routes_files)
     # app.run(debug=False,port = '80',host='0.0.0.0')
     # print('iniciando server')
+    ejecute()
     asyncio.run(bot.run())
 
 

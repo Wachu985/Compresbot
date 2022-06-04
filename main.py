@@ -11,6 +11,7 @@ from youtubedl import download,info,downloadlist
 import threading
 from multiprocessing import Process
 
+loop = asyncio.get_event_loop()
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -507,7 +508,6 @@ if __name__=='__main__':
     # proceso1.start()
     # print('Bot Iniciado')
     # proceso2.start()
-    loop = asyncio.get_event_loop()
     loop.create_task(ejecute())
     loop.create_task(asyncio.run(bot.run()))
 

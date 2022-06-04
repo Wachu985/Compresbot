@@ -490,7 +490,7 @@ except Exception as ex:
 
 async def ejecutar ():
     await bot.start()
-    ejecute()
+    await ejecute()
 
 if __name__=='__main__':
     asyncio.run(ejecutar())

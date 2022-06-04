@@ -39,13 +39,13 @@ async def download_file(request):
     )
 
 
-def ejecute():
-    # loop = asyncio.get_event_loop()
+async def ejecute():
+    loop = asyncio.get_event_loop()
 
     app = web.Application()
     app.router.add_get('/file/{route}/{file_name}', download_file)
     print('RUN')
     web.run_app(app, host='0.0.0.0', port=os.getenv('PORT'))
 
-    # loop.close()
+    loop.close()
 

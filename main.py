@@ -71,7 +71,7 @@ def text_progres(index,max):
 			return ''
 
 async def progressddl(current, total,message,bots):
-    time.sleep(0.2)
+    time.sleep(0.05)
     #await message.delete()
     await bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
 async def progressub(current, total,message,bots):
@@ -495,8 +495,7 @@ if __name__=='__main__':
     
     # loop = asyncio.get_event_loop()
     # loop.run_until_complete(ejecutar())
-    
-    asyncio.run(bot.run())
+    # asyncio.run(bot.run())
     # ejecute()
     # loop.run_forever()
     # print('Iniciando Bot....')
@@ -505,14 +504,14 @@ if __name__=='__main__':
     # app.register_blueprint(routes_files)
     # app.run(debug=False,port = '80',host='0.0.0.0')
     # print('iniciando server')
-    # w = threading.Thread(name='worker', target=ejecute)
-    # t = threading.Thread(name='my_service', target= asyncio.run(bot.run()))
+    w = threading.Thread(name='worker', target=ejecute)
+    t = threading.Thread(name='my_service', target= bot.run)
     
     # bot.start()
     # ejecute()
-    # w.start()
+    w.start().run()
     # asyncio.run(bot.run())
-    # t.start()  
+    t.start().run()
     # proceso1 = Process(target=ejecute)
     # proceso2 = Process(target=bot.start)
     # proceso1.start()

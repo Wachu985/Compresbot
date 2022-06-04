@@ -493,11 +493,8 @@ if __name__=='__main__':
     # app.register_blueprint(routes_files)
     # app.run(debug=False,port = '80',host='0.0.0.0')
     # print('iniciando server')
-    t = threading.Thread(name='my_service', target=ejecute())
-    w = threading.Thread(name='worker', target=asyncio.run(bot.run()))
-    # ejecute()
-    # asyncio.run(bot.run())
-    w.start()
-    t.start()
+    bot.start()
+    ejecute()
+    
 
 

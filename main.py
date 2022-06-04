@@ -12,7 +12,7 @@ import threading
 import time
 from multiprocessing import Process
 
-loop = asyncio.get_event_loop()
+
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -497,7 +497,9 @@ if __name__=='__main__':
     # loop.run_until_complete(ejecutar())
     # asyncio.run(bot.run())
     # ejecute()
-    loop.run_until_complete(ejecutar())
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(asyncio.run(ejecutar()))
+    
     # loop.run_forever()
     # print('Iniciando Bot....')
     

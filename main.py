@@ -12,7 +12,7 @@ import threading
 import time
 from multiprocessing import Process
 
-# loop = asyncio.get_event_loop()
+loop = asyncio.get_event_loop()
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -490,13 +490,14 @@ except Exception as ex:
 
 async def ejecutar ():
     await bot.start()
+    ejecute()
 
 if __name__=='__main__':
-    
     # loop = asyncio.get_event_loop()
     # loop.run_until_complete(ejecutar())
     # asyncio.run(bot.run())
     # ejecute()
+    loop.run_until_complete(ejecutar())
     # loop.run_forever()
     # print('Iniciando Bot....')
     
@@ -504,16 +505,16 @@ if __name__=='__main__':
     # app.register_blueprint(routes_files)
     # app.run(debug=False,port = '80',host='0.0.0.0')
     # print('iniciando server')
-    w = threading.Thread(name='worker', target=ejecute)
-    t = threading.Thread(name='my_service', target= ejecutar)
+    # w = threading.Thread(name='worker', target=ejecute)
+    # t = threading.Thread(name='my_service', target= ejecutar)
     
     # bot.start()
     # ejecute()
-    w.start()
+    # w.start()
     # asyncio.run(bot.run())
-    t.start()
-    w.run()
-    t.run()
+    # t.start()
+    # w.run()
+    # t.run()
     # proceso1 = Process(target=ejecute)
     # proceso2 = Process(target=bot.start)
     # proceso1.start()

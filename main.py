@@ -499,7 +499,7 @@ if __name__=='__main__':
     # bot.start()
     # ejecute()
     w.run()
-    asyncio.run(bot.run())
+    # asyncio.run(bot.run())
     t.run()  
     
 

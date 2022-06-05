@@ -188,7 +188,7 @@ try:
         if CallbackQuery.data == 'z20':
             try:
                 msg = CallbackQuery.message
-                zips = '20MB'
+                zips = '20MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
@@ -217,7 +217,7 @@ try:
         elif CallbackQuery.data == 'z50':
             try:
                 msg = CallbackQuery.message
-                zips = '50MB'
+                zips = '50MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
@@ -247,7 +247,7 @@ try:
         elif CallbackQuery.data == 'z100':
             try:
                 msg = CallbackQuery.message
-                zips = '100MB'
+                zips = '100MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
@@ -277,7 +277,7 @@ try:
         elif CallbackQuery.data == 'z200':
             try:
                 msg = CallbackQuery.message
-                zips = '200MB'
+                zips = '200MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
@@ -307,7 +307,7 @@ try:
         elif CallbackQuery.data == 'z500':
             try:
                 msg = CallbackQuery.message
-                zips = '500MB'
+                zips = '500MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
@@ -337,7 +337,7 @@ try:
         elif CallbackQuery.data == 'z1000':
             try:
                 msg = CallbackQuery.message
-                zips = '1000MB'
+                zips = '1000MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
@@ -367,7 +367,7 @@ try:
         elif CallbackQuery.data == 'z1500':
             try:
                 msg = CallbackQuery.message
-                zips = '1500MB'
+                zips = '1500MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
@@ -397,7 +397,7 @@ try:
         elif CallbackQuery.data == 'z2000':
             try:
                 msg = CallbackQuery.message
-                zips = '2000MB'
+                zips = '2000MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')

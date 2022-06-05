@@ -90,8 +90,8 @@ try:
             save = './'+message.chat.username+'/'
             msg = await bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time()
-            await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))
-            # await bot.download_media(message,save)
+            # await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))
+            await bot.download_media(message,save)
             await msg.delete()
             msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)
         except Exception as e:

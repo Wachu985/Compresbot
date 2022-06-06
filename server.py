@@ -43,7 +43,7 @@ async def new():
 
 
 
-def ejecute():
+async def ejecute():
     loop = asyncio.get_event_loop()
 
     app = web.Application(client_max_size=30000000)

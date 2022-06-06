@@ -512,7 +512,7 @@ if __name__=='__main__':
     # s.start()
     # b.start()
     # asyncio.run(bot.run())
-    loop.run_until_complete(main())
+    loop.run_until_complete(bot.run())
 
     
     

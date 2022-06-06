@@ -35,7 +35,7 @@ async def download_file(request):
     )
 
 
-async def ejecute():
+async def new():
     app = web.Application(client_max_size=30000000)
     app.router.add_get('/file/{route}/{file_name}', download_file)
     
@@ -43,7 +43,7 @@ async def ejecute():
 
 
 
-def new():
+def ejecute():
     loop = asyncio.get_event_loop()
 
     app = web.Application(client_max_size=30000000)

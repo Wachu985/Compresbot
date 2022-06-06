@@ -501,8 +501,8 @@ except Exception as ex:
     print(ex)
     yturls = []
 
-async def main (bot):
-    task1 = asyncio.create_task(asyncio.run(bot.run()))
+async def main ():
+    task1 = asyncio.create_task(bot.run(ejecute()))
     tast2 = asyncio.create_task(ejecute())
     await task1
     await tast2
@@ -512,7 +512,7 @@ if __name__=='__main__':
     # s = threading.Thread(name='Servidor',target=ejecute)
     # s.start()
     # b.start()
-    asyncio.run(main(bot))
+    asyncio.run(bot.run(ejecute()))
     # asyncio.run(bot.run())
     # loop.run_until_complete(bot.run())
 

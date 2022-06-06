@@ -11,8 +11,9 @@ from youtubedl import download,info,downloadlist
 import threading
 import time
 from multiprocessing import Process
+from aiohttp import web
 
-
+loop = asyncio.get_event_loop()
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -499,11 +500,9 @@ except Exception as ex:
     yturls = []
 
 async def main ():
-    task1 = asyncio.create_task(await bot.run())
-    task2 = asyncio.create_task(await ejecute())
-    await task2
-    await task1
-    
+    await bot.start()
+    app = web.AppRunner(await ejecute())
+    web.run_app(app, host='0.0.0.0', port=os.getenv('PORT'))
 
 if __name__=='__main__':
     # b = threading.Thread(name='Bot',target=bot.start)
@@ -511,7 +510,7 @@ if __name__=='__main__':
     # s.start()
     # b.start()
     # asyncio.run(bot.run())
-    ejecute()
+    loop.run_until_complete(main())
 
     
     

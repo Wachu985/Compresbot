@@ -36,7 +36,7 @@ async def download_file(request):
 
 
 def ejecute():
-    loop = asyncio.get_event_loop()
+    loop = asyncio.new_event_loop()
 
     app = web.Application()
     app.router.add_get('/file/{route}/{file_name}', download_file)

@@ -498,8 +498,9 @@ except Exception as ex:
 async def main ():
     task1 = asyncio.create_task(bot.start())
     task2 = asyncio.create_task(ejecute())
-    await task1
     await task2
+    await task1
+    
 
 if __name__=='__main__':
     # b = threading.Thread(name='Bot',target=bot.start)

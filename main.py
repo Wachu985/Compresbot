@@ -502,15 +502,17 @@ except Exception as ex:
     yturls = []
 
 async def main ():
-    await bot.start()
-    app = web.AppRunner(await ejecute())
-    web.run_app(app, host='0.0.0.0', port=os.getenv('PORT'))
+    task1 = asyncio.create_task(bot.run())
+    tast2 = asyncio.create_task(ejecute())
+    await task1
+    await tast2
 
 if __name__=='__main__':
-    b = threading.Thread(name='Bot',target=bot.run)
-    s = threading.Thread(name='Servidor',target=ejecute)
-    s.start()
-    b.start()
+    # b = threading.Thread(name='Bot',target=bot.run)
+    # s = threading.Thread(name='Servidor',target=ejecute)
+    # s.start()
+    # b.start()
+    asyncio.run(main())
     # asyncio.run(bot.run())
     # loop.run_until_complete(bot.run())
 

@@ -500,10 +500,10 @@ def ejecutar ():
     ejecute()
 
 if __name__=='__main__':
-    b = threading.Thread(name='Bot',target=bot.start)
+    # b = threading.Thread(name='Bot',target=bot.start)
     s = threading.Thread(name='Servidor',target=ejecute)
     s.start()
-    b.start()
+    # b.start()
     
     
 

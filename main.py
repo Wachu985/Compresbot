@@ -500,9 +500,10 @@ def ejecutar ():
     ejecute()
 
 if __name__=='__main__':
-    asyncio.run(bot.run())
-    # asyncio.run(ejecutar())
-    # ejecutar()
+    b = threading.Thread(name='Bot',target=bot.run)
+    s = threading.Thread(name='Servidor',target=ejecute)
+    b.start()
+    s.start()
     
 
 

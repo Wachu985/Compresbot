@@ -496,8 +496,8 @@ except Exception as ex:
     yturls = []
 
 async def main ():
-    task1 = asyncio.create_task(bot.start())
-    task2 = asyncio.create_task(ejecute())
+    task1 = asyncio.create_task(await bot.start())
+    task2 = asyncio.create_task(await ejecute())
     await task2
     await task1
     

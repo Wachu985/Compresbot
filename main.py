@@ -12,6 +12,8 @@ import threading
 import time
 from multiprocessing import Process
 from aiohttp import web
+import nest_asyncio
+nest_asyncio.apply()
 
 loop = asyncio.get_event_loop()
 api_id = 15091118

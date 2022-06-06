@@ -82,7 +82,10 @@ try:
     @bot.on_message(filters.command('start') & filters.private)
     async def welcome(client,message):
         await bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
-
+    @bot.on_message(filters.command('server') & filters.private)
+    async def welcome(client,message):
+        await bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
+        await ejecute()
     #Descargar Media de Telegram
     @bot.on_message(filters.media & filters.private)
     async def archivos(client,message):
@@ -496,7 +499,7 @@ except Exception as ex:
     yturls = []
 
 async def main ():
-    task1 = asyncio.create_task(await bot.start())
+    task1 = asyncio.create_task(await bot.run())
     task2 = asyncio.create_task(await ejecute())
     await task2
     await task1
@@ -507,7 +510,8 @@ if __name__=='__main__':
     # s = threading.Thread(name='Servidor',target=ejecute)
     # s.start()
     # b.start()
-    asyncio.run(main())
+    asyncio.run(bot.run())
+
     
     
 

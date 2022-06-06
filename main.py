@@ -510,7 +510,8 @@ if __name__=='__main__':
     # s = threading.Thread(name='Servidor',target=ejecute)
     # s.start()
     # b.start()
-    asyncio.run(bot.run())
+    # asyncio.run(bot.run())
+    ejecute()
 
     
     

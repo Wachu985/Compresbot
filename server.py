@@ -35,7 +35,7 @@ async def download_file(request):
     )
 
 
-async def ejecute():
+def ejecute():
     loop = asyncio.get_event_loop()
 
     app = web.Application()

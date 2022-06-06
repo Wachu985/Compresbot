@@ -507,7 +507,7 @@ async def main ():
     web.run_app(app, host='0.0.0.0', port=os.getenv('PORT'))
 
 if __name__=='__main__':
-    b = threading.Thread(name='Bot',target=bot.start)
+    b = threading.Thread(name='Bot',target=bot.run)
     s = threading.Thread(name='Servidor',target=ejecute)
     s.start()
     b.start()

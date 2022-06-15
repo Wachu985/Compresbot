@@ -52,10 +52,7 @@ def info(url):
     for format in formats:
         if 'DASH' in str(format['format']):
             continue
-        # elif 'mp4' == str(format['ext']):
-        # elif 'avc1.4d401e' in str(format['vcodec']):
-        #     continue
-        else:
+        elif 'mp4' == str(format['ext']):    
             id.append(format['format_id'])
             ext.append(format['ext'])
             formato.append(format['format'].split(sep='-')[-1])
@@ -93,7 +90,7 @@ def getPlaylist(url):
         return slugify(playlist)
 def download(url,username,format):
     title = getTitle(url)
-    file = './'+username+'/'+title+'.mp4'
+    file = './'+username+'/%(title)s.%(ext)s'
     format = format.split(sep=('('))[-1].replace(')','')
     opcions = {
         'format': format,
@@ -105,7 +102,7 @@ def download(url,username,format):
     with yt_dlp.YoutubeDL(opcions) as ydl:
         ydl.download([url])
         meta = ydl.extract_info(url, download=False)
-        name = './'+username+'/'+title+'.mp4'
+        name = file
         duration = int(meta['duration'])
     return name,duration
 

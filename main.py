@@ -450,7 +450,7 @@ try:
             if CallbackQuery.data == each[0]:
                 msg = CallbackQuery.message
                 format = each[1]
-                # ext = each[-1]
+                ext = each[-1]
                 username = msg.chat.username
                 url = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
                 await msg.delete()
@@ -470,7 +470,8 @@ try:
                         try:
                             #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
                             msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
-                            await bot.send_video(msg.chat.id,file,thumb='./Imagen.png',duration=duration)
+                            # await bot.send_video(msg.chat.id,file,thumb='./Imagen.png',duration=duration)
+                            await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot),thumb='./Imagen.png',duration=duration)
                             await msg.delete()
                             yturls = []
                             break

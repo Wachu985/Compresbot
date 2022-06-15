@@ -82,10 +82,12 @@ async def progressddl(current, total,message,bots,start):
             pass
     # await asyncio.sleep(2)
 async def progressub(current, total,message,bots):
-    try:
-        await bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
-    except:
-        pass
+    porcent = int(current * 100 / total)
+    if porcent % 3 == 0:
+        try:
+            await bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
+        except:
+            pass
 
 try:
     #Comando Start
@@ -184,8 +186,8 @@ try:
                 cont = 1
                 up = await bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes...')
                 while cont < partes:
-                    # await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
-                    await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
+                    await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    # await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
                 await up.delete()

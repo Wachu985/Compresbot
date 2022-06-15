@@ -50,12 +50,13 @@ def info(url):
     ext = []
     formato = []
     for format in formats:
-        if 'DASH' in str(format['format']):
-            continue
-        elif 'mp4' == str(format['ext']):    
-            id.append(format['format_id'])
-            ext.append(format['ext'])
-            formato.append(format['format'].split(sep='-')[-1])
+        if format['vcodec'] !='none' and f['acodec'] != 'none':
+        # if 'DASH' in str(format['format']):
+        #     continue
+            if 'mp4' == str(format['ext']):    
+                id.append(format['format_id'])
+                ext.append(format['ext'])
+                formato.append(format['format'].split(sep='-')[-1])
 
     cont = 0
     guardar = []

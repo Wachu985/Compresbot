@@ -53,10 +53,10 @@ def info(url):
         if format['vcodec'] !='none' and format['acodec'] != 'none':
         # if 'DASH' in str(format['format']):
         #     continue
-            if 'mp4' == str(format['ext']):    
-                id.append(format['format_id'])
-                ext.append(format['ext'])
-                formato.append(format['format'].split(sep='-')[-1])
+            # if 'mp4' == str(format['ext']):    
+            id.append(format['format_id'])
+            ext.append(format['ext'])
+            formato.append(format['format'].split(sep='-')[-1])
 
     cont = 0
     guardar = []

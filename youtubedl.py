@@ -96,7 +96,7 @@ def download(url,username,format):
     file = './'+username+'/'+title+'.mp4'
     format = format.split(sep=('('))[-1].replace(')','')
     opcions = {
-        'format': f'b[height<={format}]',
+        'format': format,
         'outtmpl': file,
         'restrict_filenames':True,
         'windowsfilenames':False

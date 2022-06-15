@@ -456,10 +456,10 @@ try:
                 await msg.delete()
                 msg = await bot.send_message(msg.chat.id,'⏬Descargando... Por favor Espere')
                 try:
+                    print(format)
                     file,duration = download(url,username,format)
                     await msg.delete()
                     # file += '.'+ext
-                    print(format)
                     msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
                     await msg.delete()
                     print(file)

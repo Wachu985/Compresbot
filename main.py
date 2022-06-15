@@ -53,6 +53,31 @@ MESSAGE_COMPRIMIDO_BOTTON = [
     ]
 ]
 
+async def compresionbot(bot,msg,client,save,zips):
+    try:
+        msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
+        try:
+            name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
+        except asyncio.TimeoutError:
+            await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
+        file = name.text + '.zip'
+        msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
+        comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
+        subidas = str(partes -1)
+        await msg.delete()
+        if comprimio:
+            cont = 1
+            msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
+            while cont < partes:
+                await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(msg,bot),thumb='./Imagen.png')  
+                # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
+                os.remove('./'+file+'.'+str('%03d' % (cont)))
+                cont += 1 
+        await msg.delete()
+        await bot.send_message(msg.chat.id,'✅Subido Correctamente')
+    except Exception as e:
+        await  msg.delete()
+        await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
 
 def text_progres(index,max):
 	try:
@@ -201,34 +226,35 @@ try:
     async def callback_querry(client,CallbackQuery):
         #Llamadas de Compresion
         if CallbackQuery.data == 'z20':
-            try:
+            # try:
                 msg = CallbackQuery.message
                 zips = '20MiB'
                 save = './'+msg.chat.username+'/'
                 await msg.delete()
-                msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
-                try:
-                    name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
-                except asyncio.TimeoutError:
-                    await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
-                file = name.text + '.zip'
-                msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
-                comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
-                subidas = str(partes -1)
-                await msg.delete()
-                if comprimio:
-                    cont = 1
-                    msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
-                    while cont < partes:
-                        # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
-                        await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
-                        os.remove('./'+file+'.'+str('%03d' % (cont)))
-                        cont += 1 
-                    await msg.delete()
-                await bot.send_message(msg.chat.id,'✅Subido Correctamente')
-            except Exception as e:
-                await  msg.delete()
-                await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
+                await compresionbot(bot,msg,client,save,zips)
+            #     msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
+            #     try:
+            #         name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
+            #     except asyncio.TimeoutError:
+            #         await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
+            #     file = name.text + '.zip'
+            #     msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
+            #     comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
+            #     subidas = str(partes -1)
+            #     await msg.delete()
+            #     if comprimio:
+            #         cont = 1
+            #         msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
+            #         while cont < partes:
+            #             # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+            #             await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
+            #             os.remove('./'+file+'.'+str('%03d' % (cont)))
+            #             cont += 1 
+            #         await msg.delete()
+            #     await bot.send_message(msg.chat.id,'✅Subido Correctamente')
+            # except Exception as e:
+            #     await  msg.delete()
+            #     await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
         elif CallbackQuery.data == 'z50':
             try:
                 msg = CallbackQuery.message
@@ -487,14 +513,14 @@ try:
                             for f in string:
                                 dir += f+'/'
                             msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
-                            comprimio,partes = split(compressionone(sub,file),'./',getBytes('1500MB'))
+                            comprimio,partes = split(compressionone(sub,file),'./',getBytes('1500MiB'))
                             await msg.delete()
                             subidas = str(partes -1)
                             if comprimio:
                                 cont = 1
                                 msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                                 while cont < partes:
-                                    await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(bot,msg),thumb='./Imagen.png')  
+                                    await bot.send_document(msg.chat.id,file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(bot,msg),thumb='./Imagen.png')  
                                     # await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')
                                     os.remove('./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)))
                                     cont += 1 

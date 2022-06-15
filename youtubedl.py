@@ -90,7 +90,7 @@ def getPlaylist(url):
         return slugify(playlist)
 def download(url,username,format):
     title = getTitle(url)
-    file = './'+username+'/'+getTitle(url)+'.%(ext)s'
+    file = './'+username+'/'+title+'.%(ext)s'
     format = format.split(sep=('('))[-1].replace(')','')
     opcions = {
         'format': format,

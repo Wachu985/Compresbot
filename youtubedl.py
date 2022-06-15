@@ -50,7 +50,7 @@ def info(url):
     ext = []
     formato = []
     for format in formats:
-        if format['vcodec'] !='none' and f['acodec'] != 'none':
+        if format['vcodec'] !='none' and format['acodec'] != 'none':
         # if 'DASH' in str(format['format']):
         #     continue
             if 'mp4' == str(format['ext']):    

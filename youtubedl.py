@@ -90,7 +90,7 @@ def getPlaylist(url):
         return slugify(playlist)
 def download(url,username,format):
     title = getTitle(url)
-    file = './'+username+'/%(title)s.%(ext)s'
+    file = './'+username+'/'+getTitle(url)+'.%(ext)s'
     format = format.split(sep=('('))[-1].replace(')','')
     opcions = {
         'format': format,
@@ -102,7 +102,7 @@ def download(url,username,format):
     with yt_dlp.YoutubeDL(opcions) as ydl:
         ydl.download([url])
         meta = ydl.extract_info(url, download=False)
-        name = file
+        name = './'+username+'/'+title+'.mp4'
         duration = int(meta['duration'])
     return name,duration
 

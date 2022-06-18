@@ -122,7 +122,7 @@ try:
     @bot.on_message(filters.command('server') & filters.private)
     def welcome(client,message):
         bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
-        ejecute()
+        asyncio.run(ejecute())
     #Descargar Media de Telegram
     @bot.on_message(filters.media & filters.private)
     def archivos(client,message):

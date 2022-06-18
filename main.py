@@ -130,7 +130,7 @@ try:
     def archivos(client,message):
         try:
             save = './'+message.chat.username+'/'
-            print()
+            print(message)
             msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time()
             filename = message.media.file_name

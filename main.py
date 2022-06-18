@@ -133,7 +133,7 @@ try:
             print(message)
             msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time()
-            filename = message.media.file_name
+            filename = message.document.file_name
             bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start,filename))
             # await bot.download_media(message,save)
             msg.delete()

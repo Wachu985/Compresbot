@@ -314,7 +314,8 @@ try:
                             #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
                             msg = bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
                             # await bot.send_video(msg.chat.id,file,thumb='./Imagen.png',duration=duration)
-                            bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot),thumb='./Imagen.png',duration=duration)
+                            filename = file.split('/')[-1]
+                            bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot,filename),thumb='./Imagen.png',duration=duration)
                             msg.delete()
                             yturls = []
                             break

@@ -16,7 +16,7 @@ import random
 import nest_asyncio
 nest_asyncio.apply()
 
-loop = asyncio.get_event_loop()
+print('Iniciando Bot...')
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -77,7 +77,8 @@ def compresionbot(bot,msg,client,save,zips):
             msg = bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
             while cont < partes:
                 filename = file+'.'+str('%03d' % (cont))
-                bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(msg,bot,filename),thumb='./Imagen.png')  
+                start = time.time()
+                bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(msg,bot,filename,start),thumb='./Imagen.png')  
                 # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                 os.remove('./'+file+'.'+str('%03d' % (cont)))
                 cont += 1 
@@ -112,14 +113,16 @@ def progressddl(current, total,message,bots,start,):
     velo = round((round(current/1000000,2)/act),2)
     if porcent % 8 == 0:
         try:
-            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n\n📥Velocidad: {velo}MiB/S\n") 
+            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n📥Velocidad: {velo} MiB/S\n") 
         except:
             pass
-def progressub(current, total,message,bots,filename):
+def progressub(current, total,message,bots,filename,start):
     porcent = int(current * 100 / total)
+    act = time.time() - start
+    velo = round((round(current/1000000,2)/act),2)
     if porcent % 20 == 0:
         try:
-            bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo\n💾Nombre: {filename} \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
+            bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo\n💾Nombre: {filename} \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n📥Velocidad: {velo} MiB/S\n")
         except:
             pass
 
@@ -220,7 +223,9 @@ try:
                 cont = 1
                 up = bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes...')
                 while cont < partes:
-                    bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    filename = file+'.'+str('%03d' % (cont))
+                    start = time.time()
+                    bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot,filename,start),thumb='./Imagen.png')  
                     # await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
@@ -316,7 +321,8 @@ try:
                             msg = bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
                             # await bot.send_video(msg.chat.id,file,thumb='./Imagen.png',duration=duration)
                             filename = file.split('/')[-1]
-                            bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot,filename),thumb='./Imagen.png',duration=duration)
+                            start = time.time()
+                            bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot,filename,start),thumb='./Imagen.png',duration=duration)
                             msg.delete()
                             yturls = []
                             break
@@ -338,7 +344,9 @@ try:
                                 cont = 1
                                 msg = bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                                 while cont < partes:
-                                    bot.send_document(msg.chat.id,file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(bot,msg),thumb='./Imagen.png')  
+                                    filename = file+'.'+str('%03d' % (cont))
+                                    start = time.time()
+                                    bot.send_document(msg.chat.id,file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(bot,msg,filename,start),thumb='./Imagen.png')  
                                     # await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')
                                     os.remove('./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)))
                                     cont += 1 
@@ -357,7 +365,11 @@ except Exception as ex:
     yturls = []
 
 if __name__=='__main__':
-    bot.run()
+    try:
+        bot.run()
+        print('Bot Iniciado')
+    except:
+        bot.run()
     
     
 

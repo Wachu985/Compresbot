@@ -6,15 +6,15 @@ from aiohttp import streamer
 
 
 @streamer
-async def file_sender(writer, file_path=None):
+def file_sender(writer, file_path=None):
     with open(file_path, 'rb') as f:
         chunk = f.read(2 ** 16)
         while chunk:
-            await writer.write(chunk)
+            writer.write(chunk)
             chunk = f.read(2 ** 16)
 
 
-async def download_file(request):
+def download_file(request):
     file_name = request.match_info['file_name']  
     route =  request.match_info['route']
     headers = {
@@ -35,15 +35,8 @@ async def download_file(request):
     )
 
 
-async def new():
-    app = web.Application(client_max_size=30000000)
-    app.router.add_get('/file/{route}/{file_name}', download_file)
-    
-    return app
 
-
-
-async def ejecute():
+def ejecute():
     loop = asyncio.get_event_loop()
 
     app = web.Application(client_max_size=30000000)

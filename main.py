@@ -347,8 +347,9 @@ except Exception as ex:
     yturls = []
 
 if __name__=='__main__':
-    ejecute()
     bot.run()
+    ejecute()
+    
 
 
     

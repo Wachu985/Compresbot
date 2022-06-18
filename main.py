@@ -107,13 +107,13 @@ def text_progres(index,max):
 	except Exception as ex:
 			return ''
 
-def progressddl(current, total,message,bots,start,):
+def progressddl(current, total,message,bots,filename,start,):
     porcent = int(current * 100 / total)
     act = time.time() - start
     velo = round((round(current/1000000,2)/act),2)
     if porcent % 8 == 0:
         try:
-            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n📥Velocidad: {velo} MiB/S\n") 
+            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n💾Nombre: {filename} \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n📥Velocidad: {velo} MiB/S\n") 
         except:
             pass
 def progressub(current, total,message,bots,filename,start):
@@ -141,10 +141,21 @@ try:
         try:
             save = './'+message.chat.username+'/'
             if message.video:
-                print('video')
+                filename = message.video.file_name
+            elif message.stiker:
+                filename = message.stiker.file_name
+            elif message.photo:
+                filename = message.photo.file_name
+            elif message.audio:
+                filename = message.audio.file_name
+            elif message.document:
+                filename = message.document.file_name
+            elif message.voice:
+                filename = message.voice.file_name  
+
             msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time() 
-            bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))
+            bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,filename,start))
             # await bot.download_media(message,save)
             msg.delete()
             msg = bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)

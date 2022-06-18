@@ -12,6 +12,7 @@ import threading
 import time
 from multiprocessing import Process
 from aiohttp import web
+import random
 import nest_asyncio
 nest_asyncio.apply()
 
@@ -52,6 +53,11 @@ MESSAGE_COMPRIMIDO_BOTTON = [
     [InlineKeyboardButton('CANCEL',callback_data='zstop')        
     ]
 ]
+
+def randit():
+    populaton = 'abcdefgh1jklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*_+,./;'
+    contra = "".join(random.sample(populaton,10))
+    return contra
 
 def compresionbot(bot,msg,client,save,zips):
     try:
@@ -133,7 +139,22 @@ try:
             print(message)
             msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time()
-            filename = message.document.file_name
+            try:
+                filename = message.document.file_name
+            except:
+                filename = message.sticker.file_name
+                try:
+                    filename = message.photo.file_name
+                except:
+                    filename = message.video.file_name
+                    try:
+                        filename = message.video.file_name
+                    except:
+                        filename = message.audio.file_name
+                        try:
+                            filename = message.audio.file_name
+                        except:
+                            filename = randit()  
             bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start,filename))
             # await bot.download_media(message,save)
             msg.delete()

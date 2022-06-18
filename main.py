@@ -347,8 +347,7 @@ except Exception as ex:
     yturls = []
 
 if __name__=='__main__':
-    threading.Thread(target=ejecute,args=[]).start()
-    threading.Thread(target=bot.run, args=[]).start()
+    bot.run()
     
     
 

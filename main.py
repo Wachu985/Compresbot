@@ -106,11 +106,11 @@ def text_progres(index,max):
 	except Exception as ex:
 			return ''
 
-def progressddl(current, total,message,bots,start,filename):
+def progressddl(current, total,message,bots,start,):
     porcent = int(current * 100 / total)
     if porcent % 8 == 0:
         try:
-            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n💾Nombre: {filename}\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
+            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
         except:
             pass
     # await asyncio.sleep(2)
@@ -137,24 +137,8 @@ try:
         try:
             save = './'+message.chat.username+'/'
             msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
-            start = time.time()
-            try:
-                filename = message.document.file_name
-            except:
-                filename = message.sticker.file_name
-                try:
-                    filename = message.photo.file_name
-                except:
-                    filename = message.video.file_name
-                    try:
-                        filename = message.video.file_name
-                    except:
-                        filename = message.audio.file_name
-                        try:
-                            filename = message.audio.file_name
-                        except:
-                            filename = randit()  
-            bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start,filename))
+            start = time.time() 
+            bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))
             # await bot.download_media(message,save)
             msg.delete()
             msg = bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)

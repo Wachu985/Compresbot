@@ -57,7 +57,7 @@ def compresionbot(bot,msg,client,save,zips):
     try:
         msg = bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
         try:
-            name = client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
+            name = asyncio.run(client.listen.Message(filters.chat(msg.chat.id), timeout = 50))
         except asyncio.TimeoutError:
             msg.edit_text('🚫Tiempo de Espera Exedido🚫')
         file = name.text + '.zip'

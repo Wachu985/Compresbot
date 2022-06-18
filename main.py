@@ -140,6 +140,8 @@ try:
     def archivos(client,message):
         try:
             save = './'+message.chat.username+'/'
+            if message.video:
+                print('video')
             msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time() 
             bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))

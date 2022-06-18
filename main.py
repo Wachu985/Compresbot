@@ -16,7 +16,7 @@ import random
 import nest_asyncio
 nest_asyncio.apply()
 
-print('Iniciando Bot...')
+print('Bot Iniciado')
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -366,8 +366,8 @@ except Exception as ex:
 
 if __name__=='__main__':
     try:
-        bot.run()
-        print('Bot Iniciado')
+        print('Iniciando Bot...')
+        bot.run()  
     except:
         bot.run()
     

@@ -108,12 +108,13 @@ def text_progres(index,max):
 
 def progressddl(current, total,message,bots,start,):
     porcent = int(current * 100 / total)
+    act = time.time() - start
+    velo = round(current/1000000)/act
     if porcent % 8 == 0:
         try:
-            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
+            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n\n📥Velocidad: {velo}MiB/S\n") 
         except:
             pass
-    # await asyncio.sleep(2)
 def progressub(current, total,message,bots,filename):
     porcent = int(current * 100 / total)
     if porcent % 20 == 0:

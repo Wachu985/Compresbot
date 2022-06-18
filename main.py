@@ -55,11 +55,12 @@ MESSAGE_COMPRIMIDO_BOTTON = [
 
 def compresionbot(bot,msg,client,save,zips):
     try:
-        msg = bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
+        msg = bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇 Tiene 8 seg...')
         try:
-            name = asyncio.run(client.listen.Message(filters.chat(msg.chat.id), timeout = 5))
+            name = asyncio.run(client.listen.Message(filters.chat(msg.chat.id), timeout = 8))
         except asyncio.TimeoutError:
             msg.edit_text('🚫Tiempo de Espera Exedido🚫')
+            return
         file = name.text + '.zip'
         msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))

@@ -53,31 +53,31 @@ MESSAGE_COMPRIMIDO_BOTTON = [
     ]
 ]
 
-async def compresionbot(bot,msg,client,save,zips):
+def compresionbot(bot,msg,client,save,zips):
     try:
-        msg = await bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
+        msg = bot.send_message(msg.chat.id,'🖌Escriba ahora el Nombre del Archivo:👇')
         try:
-            name = await client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
+            name = client.listen.Message(filters.chat(msg.chat.id), timeout = 50)
         except asyncio.TimeoutError:
-            await msg.edit_text('🚫Tiempo de Espera Exedido🚫')
+            msg.edit_text('🚫Tiempo de Espera Exedido🚫')
         file = name.text + '.zip'
-        msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
+        msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
         subidas = str(partes -1)
-        await msg.delete()
+        msg.delete()
         if comprimio:
             cont = 1
-            msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
+            msg = bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
             while cont < partes:
-                await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(msg,bot),thumb='./Imagen.png')  
+                bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(msg,bot),thumb='./Imagen.png')  
                 # await bot.send_document(msg.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                 os.remove('./'+file+'.'+str('%03d' % (cont)))
                 cont += 1 
-        await msg.delete()
-        await bot.send_message(msg.chat.id,'✅Subido Correctamente')
+        msg.delete()
+        bot.send_message(msg.chat.id,'✅Subido Correctamente')
     except Exception as e:
-        await  msg.delete()
-        await bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
+        msg.delete()
+        bot.send_message(msg.chat.id,f'❌Error al Subir Comprimidos ❌ {e}')
 
 def text_progres(index,max):
 	try:
@@ -98,66 +98,66 @@ def text_progres(index,max):
 	except Exception as ex:
 			return ''
 
-async def progressddl(current, total,message,bots,start):
+def progressddl(current, total,message,bots,start):
     porcent = int(current * 100 / total)
     if porcent % 8 == 0:
         try:
-            await bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
+            bots.edit_message_text(message.chat.id,message.id,f"⏬Descargando\n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📥Descargado: {round(current/1000000,2)}\n") 
         except:
             pass
     # await asyncio.sleep(2)
-async def progressub(current, total,message,bots):
+def progressub(current, total,message,bots):
     porcent = int(current * 100 / total)
     if porcent % 20 == 0:
         try:
-            await bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
+            bots.edit_message_text(message.chat.id,message.id,f"⏫Subiendo \n{text_progres(current,total)}\n📊Porcentaje: {current * 100 / total:.1f}%\n🗓Total :{round(total/1000000,2)} MB \n📤Subido: {round(current/1000000,2)}\n")
         except:
             pass
 
 try:
     #Comando Start
     @bot.on_message(filters.command('start') & filters.private)
-    async def welcome(client,message):
-        await bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
+    def welcome(client,message):
+        bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
     @bot.on_message(filters.command('server') & filters.private)
-    async def welcome(client,message):
-        await bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
-        await ejecute()
+    def welcome(client,message):
+        bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
+        ejecute()
     #Descargar Media de Telegram
     @bot.on_message(filters.media & filters.private)
-    async def archivos(client,message):
+    def archivos(client,message):
         try:
             save = './'+message.chat.username+'/'
-            msg = await bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
+            msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time()
-            await bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))
+            bot.download_media(message,save,progress=progressddl,progress_args=(msg,bot,start))
             # await bot.download_media(message,save)
-            await msg.delete()
-            msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)
+            msg.delete()
+            msg = bot.send_message(msg.chat.id,'✅Descargado Correctamente',reply_to_message_id=message.id)
         except Exception as e:
-            await msg.delete()
-            await bot.send_message(msg.chat.id,f'❌Error de Descarga❌ {e}')
+            msg.delete()
+            bot.send_message(msg.chat.id,f'❌Error de Descarga❌ {e}')
     
     #Comando Zips
     @bot.on_message(filters.command('zips') & filters.private)
-    async def compress(client,message):
+    def compress(client,message):
         text = MESSAGE_COMPRIMIDO
         reply_botton = InlineKeyboardMarkup(MESSAGE_COMPRIMIDO_BOTTON)
-        msg=await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=reply_botton,reply_to_message_id=message.id)
+        msg=bot.send_message(chat_id=message.chat.id,text=text,reply_markup=reply_botton,reply_to_message_id=message.id)
     
     #Comando Eliminar Directorio
     @bot.on_message(filters.command('elimreg') & filters.private)
-    async def delete(client,message):
+    def delete(client,message):
         save = './'+message.chat.username+'/'
         if os.path.exists(save):
             rmtree(save)
-            await bot.send_message(message.chat.id,'💢Eliminado el Directorio Correctamente💢')
+            bot.send_message(message.chat.id,'💢Eliminado el Directorio Correctamente💢')
         else:
-            await bot.send_message(message.chat.id,'🚫No se Pudo Eliminar el Directorio Correctamente Por que no Existe🚫')
+            bot.send_message(message.chat.id,'🚫No se Pudo Eliminar el Directorio Correctamente Por que no Existe🚫')
     
     #Comando Mostrar Directorio
     @bot.on_message(filters.command('ls') & filters.private)
-    async def elem(client,message):
+    def elem(client,message):
         save = './'+message.chat.username+'/'
         # save = '/app'
         if os.path.exists(save):
@@ -167,14 +167,14 @@ try:
             for f in oslist:
                 msg += str(cont)+'-'+str(f)+'\n'
                 cont +=1
-            await bot.send_message(message.chat.id,msg)
+            bot.send_message(message.chat.id,msg)
         else:
-            await bot.send_message(message.chat.id,'🚫No tienes ningun Elemento🚫')
+            bot.send_message(message.chat.id,'🚫No tienes ningun Elemento🚫')
     
     
     #Comando Descargar Video de Youtube
     @bot.on_message(filters.command('ytvid') & filters.private)
-    async def ytdl(client,message):
+    def ytdl(client,message):
         global yturls
         yturls = []
         try:
@@ -186,97 +186,97 @@ try:
                 button_list.append(InlineKeyboardButton(each[1], callback_data = each[0]))
             keyboard_group=InlineKeyboardMarkup(build_menu(button_list, n_cols=3))
             text = 'Seleccione la Resolucion:👇'
-            msg= await bot.send_message(chat_id=message.chat.id,text=text,reply_markup=keyboard_group,reply_to_message_id=message.id) 
+            msg= bot.send_message(chat_id=message.chat.id,text=text,reply_markup=keyboard_group,reply_to_message_id=message.id) 
         except Exception as e:
-            await bot.send_message(message.chat.id,f'❌Error al Analizar el Video❌-> {e}')
+            bot.send_message(message.chat.id,f'❌Error al Analizar el Video❌-> {e}')
     
     
     #Comando Descargar Lista de Youtube
     @bot.on_message(filters.command('ytlist') & filters.private)
-    async def ytlist(client,message):
+    def ytlist(client,message):
         playlist = message.command[1]
         zips = message.command[-1]+'MB'
         res = message.command[2]
         username = message.chat.username
         try:
-            msg = await bot.send_message(message.chat.id,'⏫Descargando Videos... Por Favor Espere')
+            msg = bot.send_message(message.chat.id,'⏫Descargando Videos... Por Favor Espere')
             save,title = downloadlist(playlist,res,username)
             file = title+'.zip'
-            await msg.delete()
-            msg = await bot.send_message(message.chat.id,'📚Comprimiendo Archivos')
+            msg.delete()
+            msg = bot.send_message(message.chat.id,'📚Comprimiendo Archivos')
             comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
             subidas = str(partes -1)
-            await msg.delete()
+            msg.delete()
             if comprimio:
                 cont = 1
-                up = await bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes...')
+                up = bot.send_message(message.chat.id,'⏫Subiendo '+subidas+' Partes...')
                 while cont < partes:
-                    await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
+                    bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(up,bot),thumb='./Imagen.png')  
                     # await bot.send_document(message.chat.id,'./'+file+'.'+str('%03d' % (cont)),thumb='./Imagen.png')
                     os.remove('./'+file+'.'+str('%03d' % (cont)))
                     cont += 1 
-                await up.delete()
-                await bot.send_message(message.chat.id,'✅Subido Correctamente')
+                up.delete()
+                bot.send_message(message.chat.id,'✅Subido Correctamente')
         except Exception as e:
-            await msg.delete()
-            await bot.send_message(message.chat.id,f'❌Error al Descargar la Lista❌ {e}')
+            msg.delete()
+            bot.send_message(message.chat.id,f'❌Error al Descargar la Lista❌ {e}')
 
     #Llamadas al CallBack
     @bot.on_callback_query()
-    async def callback_querry(client,CallbackQuery):
+    def callback_querry(client,CallbackQuery):
         #Llamadas de Compresion
         if CallbackQuery.data == 'z20':
             msg = CallbackQuery.message
             zips = '20MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips)
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips)
         elif CallbackQuery.data == 'z50':
             msg = CallbackQuery.message
             zips = '50MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips)
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips)
         elif CallbackQuery.data == 'z100':
             msg = CallbackQuery.message
             zips = '100MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips)
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips)
         elif CallbackQuery.data == 'z200':
             msg = CallbackQuery.message
             zips = '200MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips)
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips)
         elif CallbackQuery.data == 'z500':
             msg = CallbackQuery.message
             zips = '500MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips)
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips)
         elif CallbackQuery.data == 'z1000':
             msg = CallbackQuery.message
             zips = '1000MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips)  
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips)  
         elif CallbackQuery.data == 'z1500':
             msg = CallbackQuery.message
             zips = '1500MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips) 
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips) 
         elif CallbackQuery.data == 'z2000':
             msg = CallbackQuery.message
             zips = '2000MiB'
             save = './'+msg.chat.username+'/'
-            await msg.delete()
-            await compresionbot(bot,msg,client,save,zips)
+            msg.delete()
+            compresionbot(bot,msg,client,save,zips)
         elif CallbackQuery.data =='stop':
             msg = CallbackQuery.message 
-            await client.listen.Cancel(filters.user(msg.from_user.id))
-            await msg.delete()
+            client.listen.Cancel(filters.user(msg.from_user.id))
+            msg.delete()
         
         #Llamada de Descarga de Videos
         global yturls
@@ -287,32 +287,32 @@ try:
                 ext = each[-1]
                 username = msg.chat.username
                 url = CallbackQuery.message.reply_to_message.text.split(sep=' ')[-1]
-                await msg.delete()
-                msg = await bot.send_message(msg.chat.id,'⏬Descargando... Por favor Espere')
+                msg.delete()
+                msg = bot.send_message(msg.chat.id,'⏬Descargando... Por favor Espere')
                 try:
                     print(format)
                     file,duration = download(url,username,format)
-                    await msg.delete()
+                    msg.delete()
                     # file += '.'+ext
-                    msg = await bot.send_message(msg.chat.id,'✅Descargado Correctamente')
-                    await msg.delete()
+                    msg = bot.send_message(msg.chat.id,'✅Descargado Correctamente')
+                    msg.delete()
                     print(file)
                 except Exception as e:
-                    await  msg.delete()
-                    await bot.send_message(msg.chat.id,f'❌Error al Descargar de Youtube❌ {e}')
+                    msg.delete()
+                    bot.send_message(msg.chat.id,f'❌Error al Descargar de Youtube❌ {e}')
                 if os.path.exists(file):
                     if os.path.getsize(file) < 1572864000:
                         try:
                             #await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot))
-                            msg = await bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
+                            msg = bot.send_message(msg.chat.id,'⏫Subiendo a Telegram... Por Favor Espere')
                             # await bot.send_video(msg.chat.id,file,thumb='./Imagen.png',duration=duration)
-                            await bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot),thumb='./Imagen.png',duration=duration)
-                            await msg.delete()
+                            bot.send_video(msg.chat.id,file,progress=progressub,progress_args=(msg,bot),thumb='./Imagen.png',duration=duration)
+                            msg.delete()
                             yturls = []
                             break
                         except Exception as e:
-                            await msg.delete()
-                            await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
+                            msg.delete()
+                            bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
                     elif os.path.getsize(file) > 1572864000:
                         try:
                             string = file.split(sep='/')[:-1]
@@ -320,25 +320,25 @@ try:
                             dir = ''
                             for f in string:
                                 dir += f+'/'
-                            msg = await bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
+                            msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
                             comprimio,partes = split(compressionone(sub,file),'./',getBytes('1500MiB'))
-                            await msg.delete()
+                            msg.delete()
                             subidas = str(partes -1)
                             if comprimio:
                                 cont = 1
-                                msg = await bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
+                                msg = bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                                 while cont < partes:
-                                    await bot.send_document(msg.chat.id,file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(bot,msg),thumb='./Imagen.png')  
+                                    bot.send_document(msg.chat.id,file+'.'+str('%03d' % (cont)),progress=progressub,progress_args=(bot,msg),thumb='./Imagen.png')  
                                     # await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')
                                     os.remove('./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)))
                                     cont += 1 
-                                await msg.delete()
-                            await bot.send_message(msg.chat.id,'✅Subido Correctamente')
+                                msg.delete()
+                            bot.send_message(msg.chat.id,'✅Subido Correctamente')
                         except Exception as e:
-                            await msg.delete()
-                            await bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
+                            msg.delete()
+                            bot.send_message(msg.chat.id,f'❌Error al Subir a Telegram❌ {e}')
                 else:
-                    await bot.send_message(msg.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
+                    bot.send_message(msg.chat.id,'❌El Archivo no se Descargó Correctamente❌') 
                 
                     
 
@@ -347,7 +347,7 @@ except Exception as ex:
     yturls = []
 
 if __name__=='__main__':
-    asyncio.run(bot.run())
+    bot.run()
 
 
     

@@ -8,7 +8,7 @@ def __copyInFile(iF, oF, buffersize=1024, tocopy = 0):
     while True:
         i += 1
         elsetocpy = tocopy - copied
-        # free to copy all
+        
         if (elsetocpy - buffersize > 0) or (tocopy == 0):
             tmp = iF.read(buffersize)
             if tmp == b'':
@@ -19,7 +19,7 @@ def __copyInFile(iF, oF, buffersize=1024, tocopy = 0):
             else:
                 oF.write(tmp)
                 copied += buffersize
-        # last data to copy
+
         else:
             tmp = iF.read(elsetocpy)
             if tmp == b'':
@@ -36,7 +36,7 @@ def split(inFileSrc, output, splitIn):
     try:
         inFile = open(inFileSrc, 'rb');
     except FileNotFoundError:
-        print('Error: the file %s does not exists. Exiting...' % (inFileSrc))
+        print('Error: El Archivo %s No Existe. Saliendo...' % (inFileSrc))
         return False
         exit()
     while True:
@@ -76,7 +76,7 @@ def getBytes(inVar):
     number = tmp[0]
     unit = tmp[1]
     del tmp
-    #IS
+
     if(unit == 'k' or unit == 'K' or unit == 'KB'):
         return int(number * 1000)
     elif(unit == 'm' or unit == 'M' or unit == 'MB'):
@@ -93,7 +93,7 @@ def getBytes(inVar):
         return int(number * 1000000000000000000000)
     elif(unit == 'y' or unit == 'Y' or unit == 'YB'):
         return int(number * 1000000000000000000000000)
-    #BU
+
     elif(unit == 'KiB'):
         return int(number * 1024)
     elif(unit == 'MiB'):
@@ -113,17 +113,17 @@ def getBytes(inVar):
     elif(unit == '' or unit == 'b' or unit == 'B'):
         return int(number)
     else:
-        print('Fatal error during conversion of %s, is an effective unit of measure? Exiting...' % (str(inVar)))
+        print('Error durante la conversion de  %s, Seguro q enviaste un valor Correcto? Saliendo...' % (str(inVar)))
         exit()
 
-def compresion(file:str,dir :str):
+def compresion(file:str,dir :str): 
     if file != '':
         file = file
     else:
         file = 'nuevo'
     foo = zipfile.ZipFile(file, 'w')
     foo.write(file)
-    # Adding files from directory 'files'
+    # Añadiendo archivos al directorio
     for root, dirs, files in os.walk(dir):
         for f in files:
             foo.write(os.path.join(root, f))

@@ -15,6 +15,7 @@ from multiprocessing import Process
 from aiohttp import web
 import random
 import nest_asyncio
+from download import process
 nest_asyncio.apply()
 
 print('Iniciando Bot...')
@@ -143,10 +144,12 @@ try:
     @bot.on_message(filters.command('start') & filters.private)
     def welcome(client,message):
         bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
-    @bot.on_message(filters.command('server') & filters.private)
+    @bot.on_message(filters.command('wget') & filters.private)
     def welcome(client,message):
-        bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
-        ejecute()
+        url = message.command[-1]
+        process(url)
+        
+        
     #Descargar Media de Telegram
     @bot.on_message(filters.media & filters.private)
     def archivos(client,message):
@@ -213,8 +216,8 @@ try:
     #Comando Mostrar Directorio
     @bot.on_message(filters.command('ls') & filters.private)
     def elem(client,message):
-        save = './'+message.chat.username+'/'
-        # save = '/app'
+        # save = './'+message.chat.username+'/'
+        save = '/app'
         if os.path.exists(save):
             oslist = os.listdir(save)
             cont = 1

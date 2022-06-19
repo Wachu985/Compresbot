@@ -68,7 +68,7 @@ def compresionbot(bot,msg,client,save,zips):
             msg.edit_text('🚫Tiempo de Espera Exedido🚫')
             return
         file = name.text + '.zip'
-        print(os.path.getsize(save))
+        print(os.stat(save).st_size)
         msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
         subidas = str(partes -1)

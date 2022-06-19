@@ -16,7 +16,7 @@ import random
 import nest_asyncio
 nest_asyncio.apply()
 
-print('Bot Iniciado')
+print('Iniciando Bot...')
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
@@ -141,17 +141,35 @@ try:
         try:
             save = './'+message.chat.username+'/'
             if message.video:
-                filename = message.video.file_name
+                try:
+                    filename = message.video.file_name
+                except:
+                    filename = message.video.file_id
             elif message.sticker:
-                filename = message.sticker.file_name
+                try:
+                    filename = message.sticker.file_name
+                except:
+                    filename = message.sticker.file_id
             elif message.photo:
-                filename = message.photo.file_name
+                try:
+                    filename = message.photo.file_name
+                except:
+                    filename = message.photo.file_id
             elif message.audio:
-                filename = message.audio.file_name
+                try:
+                    filename = message.audio.file_name
+                except:
+                    filename = message.audio.file_id
             elif message.document:
-                filename = message.document.file_name
+                try:
+                    filename = message.document.file_name
+                except:
+                    filename = message.document.file_id
             elif message.voice:
-                filename = message.voice.file_name  
+                try:
+                    filename = message.voice.file_name
+                except:
+                    filename = message.voice.file_id 
 
             msg = bot.send_message(message.chat.id,"📡Descargando Archivos... Por Favor Espere",reply_to_message_id=message.id)
             start = time.time() 
@@ -379,7 +397,7 @@ except Exception as ex:
 
 if __name__=='__main__':
     try:
-        print('Iniciando Bot...')
+        print('Bot Iniciado')
         bot.run()  
     except:
         bot.run()

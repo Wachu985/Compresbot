@@ -147,7 +147,7 @@ try:
     @bot.on_message(filters.command('wget') & filters.private)
     def welcome(client,message):
         url = message.command[-1]
-        process(url)
+        asyncio.run(process(url))
         
         
     #Descargar Media de Telegram

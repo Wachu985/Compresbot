@@ -80,7 +80,7 @@ def compresionbot(bot,msg,client,save,zips):
         tama = int(calculador_tamaño(save)/1048576)
         tpart = int(zips.split('M')[0])
         part = math.ceil(tama/tpart)  
-        msg = bot.send_message(msg.chat.id,f'📚Comprimiendo Archivos\nNombre: {file}\n🗂Tamaño Total: {tama} MiB\n📂Tamaño de Partes: {tpart}MiB\n💾Cantidad de Partes: {part}')
+        msg = bot.send_message(msg.chat.id,f'📚Comprimiendo Archivos\n📝Nombre: {file}\n🗂Tamaño Total: {tama} MiB\n📂Tamaño de Partes: {tpart}MiB\n💾Cantidad de Partes: {part}')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
         subidas = str(partes -1)
         msg.delete()
@@ -379,7 +379,12 @@ try:
                             dir = ''
                             for f in string:
                                 dir += f+'/'
-                            msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
+                            namef = str(file.split(sep='/')[-1])
+                            tama = os.path.getsize(file)/1048576
+                            tpart = 1500
+                            part = math.ceil(tama/tpart)  
+                            msg = bot.send_message(msg.chat.id,f'📚Comprimiendo Archivos\n📝Nombre: {namef}\n🗂Tamaño Total: {tama} MiB\n📂Tamaño de Partes: {tpart}MiB\n💾Cantidad de Partes: {part}')
+                            # msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
                             comprimio,partes = split(compressionone(sub,file),'./',getBytes('1500MiB'))
                             msg.delete()
                             subidas = str(partes -1)

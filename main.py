@@ -15,7 +15,6 @@ from multiprocessing import Process
 from aiohttp import web
 import random
 import nest_asyncio
-from download import process
 nest_asyncio.apply()
 
 print('Iniciando Bot...')
@@ -143,12 +142,7 @@ try:
     #Comando Start
     @bot.on_message(filters.command('start') & filters.private)
     def welcome(client,message):
-        bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)
-    @bot.on_message(filters.command('wget') & filters.private)
-    def welcome(client,message):
-        url = message.command[-1]
-        asyncio.run(process(url))
-        
+        bot.send_message(message.chat.id,'✉️Bienvenido al Bot '+message.chat.first_name)        
         
     #Descargar Media de Telegram
     @bot.on_message(filters.media & filters.private)

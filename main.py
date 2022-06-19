@@ -10,6 +10,7 @@ from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup,CallbackQue
 from youtubedl import download,info,downloadlist
 import threading
 import time
+import math
 from multiprocessing import Process
 from aiohttp import web
 import random
@@ -76,8 +77,10 @@ def compresionbot(bot,msg,client,save,zips):
             msg.edit_text('🚫Tiempo de Espera Exedido🚫')
             return
         file = name.text + '.zip'
-        print(calculador_tamaño(save))
-        msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
+        tama = getBytes(str(calculador_tamaño(save))+'MiB')
+        tpart = getBytes(zips)
+        part = math.ceil(tama/tpart)  
+        msg = bot.send_message(msg.chat.id,f'📚Comprimiendo Archivos\nNombre: {file}\n🗂Tamaño Total: {tama}\n📂Tamaño de Partes: {tpart}\n💾Cantidad de Partes: {part}')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
         subidas = str(partes -1)
         msg.delete()

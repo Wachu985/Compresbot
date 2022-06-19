@@ -20,7 +20,7 @@ print('Iniciando Bot...')
 api_id = 15091118
 api_hash = "213e85670cd03dfdcfc4936c86d153a2"
 bot_token  = '5336546424:AAEN7ioWpVTWjBTXAy2ZrTtLpDnqLF2IxOE'
-bot = Client("LocoBot", api_id, api_hash,bot_token=bot_token)
+bot = Client("CompresionBot", api_id, api_hash,bot_token=bot_token)
 new = 0
 yturls = []
 Conversation(bot)

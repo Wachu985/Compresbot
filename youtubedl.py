@@ -28,9 +28,11 @@ def slugify(value, allow_unicode=False):
 
 def my_hook(d):
     if d['status'] == 'downloading':
+        filemane = d['filename']
         current = d['downloaded_bytes']
         total = d['total_bytes']
         speed = d['speed']
+
         print(f'Descargando {current * 100 / total:.1f} --- {speed}')
     if d['status'] == 'finished':
         print('Done downloading, now converting ...')
@@ -86,6 +88,7 @@ def getPlaylist(url):
             url, download=False)
         playlist = str(meta['title'])+ids
         return slugify(playlist)
+
 def download(url,username,format):
     title = getTitle(url)
     file = './'+username+'/'+title+'.%(ext)s'
@@ -94,7 +97,8 @@ def download(url,username,format):
         'format': format,
         'outtmpl': file,
         'restrict_filenames':True,
-        'windowsfilenames':False
+        'windowsfilenames':False,
+        'progress_hooks': [my_hook]
     }
 
     with yt_dlp.YoutubeDL(opcions) as ydl:

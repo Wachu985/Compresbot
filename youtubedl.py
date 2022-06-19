@@ -96,8 +96,7 @@ def download(url,username,format):
         'format': format,
         'outtmpl': file,
         'restrict_filenames':True,
-        'windowsfilenames':False,
-        'progress_hooks': [my_hook]
+        'windowsfilenames':False
     }
 
     with yt_dlp.YoutubeDL(opcions) as ydl:

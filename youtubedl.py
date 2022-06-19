@@ -32,7 +32,6 @@ def my_hook(d):
         current = d['downloaded_bytes']
         total = d['total_bytes']
         speed = d['speed']
-
         print(f'Descargando {current * 100 / total:.1f} --- {speed}')
     if d['status'] == 'finished':
         print('Done downloading, now converting ...')

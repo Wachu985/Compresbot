@@ -31,6 +31,7 @@ async def download(url, headers, save_path):
 
 async def process(url):
     filename = os.path.basename(urlparse(url).path)
+    print(filename)
     tmp_dir = TemporaryDirectory(prefix=filename, dir=os.path.abspath('.'))
     size = await get_content_length(url)
     tasks = []
@@ -44,3 +45,4 @@ async def process(url):
         for f in file_parts:
             with open(f, 'rb') as fd:
                 shutil.copyfileobj(fd, wfd)
+    print('Descarga Finalizada')

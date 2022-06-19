@@ -24,8 +24,16 @@ bot = Client("CompresionBot", api_id, api_hash,bot_token=bot_token)
 new = 0
 yturls = []
 Conversation(bot)
-# def progress_func(current,total,falta):
-#     print(f'{current * 100 / total:.1f}')
+
+def calculador_tamaño(fichero):
+    tamaño_total = 0
+    for rutas, directorios, archivos in os.walk(fichero):
+        for archivo in archivos:
+            subarchivo = os.path.join(fichero, archivo)
+            if not os.path.islink(subarchivo):
+                tamaño_total += os.path.getsize(subarchivo)
+
+    return tamaño_total
 
 def build_menu(buttons,n_cols,header_buttons=None,footer_buttons=None):
     menu = []
@@ -68,7 +76,7 @@ def compresionbot(bot,msg,client,save,zips):
             msg.edit_text('🚫Tiempo de Espera Exedido🚫')
             return
         file = name.text + '.zip'
-        print(os.stat(save).st_size)
+        print(calculador_tamaño(save))
         msg = bot.send_message(msg.chat.id,'📚Comprimiendo Archivos')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))
         subidas = str(partes -1)

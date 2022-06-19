@@ -77,8 +77,8 @@ def compresionbot(bot,msg,client,save,zips):
             msg.edit_text('🚫Tiempo de Espera Exedido🚫')
             return
         file = name.text + '.zip'
-        tama = getBytes(str(calculador_tamaño(save))+'MiB')
-        tpart = getBytes(zips)
+        tama = int(calculador_tamaño(save)/1048576)
+        tpart = int(zips.split('M')[0])
         part = math.ceil(tama/tpart)  
         msg = bot.send_message(msg.chat.id,f'📚Comprimiendo Archivos\nNombre: {file}\n🗂Tamaño Total: {tama}\n📂Tamaño de Partes: {tpart}\n💾Cantidad de Partes: {part}')
         comprimio,partes = split(compresion(file,save),'./',getBytes(zips))

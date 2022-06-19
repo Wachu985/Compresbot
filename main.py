@@ -142,8 +142,8 @@ try:
             save = './'+message.chat.username+'/'
             if message.video:
                 filename = message.video.file_name
-            elif message.stiker:
-                filename = message.stiker.file_name
+            elif message.sticker:
+                filename = message.sticker.file_name
             elif message.photo:
                 filename = message.photo.file_name
             elif message.audio:

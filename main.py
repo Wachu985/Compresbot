@@ -375,7 +375,7 @@ try:
                                 cont = 1
                                 msg = bot.send_message(msg.chat.id,'⏫Subiendo '+subidas+' Partes')
                                 while cont < partes:
-                                    filename = (file+'.'+str('%03d' % (cont))).split('/')[-1]
+                                    filename = sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont))
                                     start = time.time()
                                     bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),progress=progressub,progress_args=(msg,bot,filename,start),thumb='./Imagen.png')  
                                     # await bot.send_document(msg.chat.id,'./'+sub.split(sep='.')[0]+'.zip.'+str('%03d' % (cont)),thumb='./Imagen.png')

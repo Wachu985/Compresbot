@@ -380,7 +380,7 @@ try:
                             for f in string:
                                 dir += f+'/'
                             namef = str(file.split(sep='/')[-1])
-                            tama = os.path.getsize(file)/1048576
+                            tama = int(os.path.getsize(file)/1048576)
                             tpart = 1500
                             part = math.ceil(tama/tpart)  
                             msg = bot.send_message(msg.chat.id,f'📚Comprimiendo Archivos\n📝Nombre: {namef}\n🗂Tamaño Total: {tama} MiB\n📂Tamaño de Partes: {tpart}MiB\n💾Cantidad de Partes: {part}')

@@ -45,7 +45,6 @@ def info(url):
             url, download=False)
 
     formats = meta['formats']
-    locura = {}
     id = []
     ext = []
     formato = []
@@ -57,8 +56,6 @@ def info(url):
             id.append(format['format_id'])
             ext.append(format['ext'])
             formato.append(format['format'].split(sep='-')[-1])
-
-    cont = 0
     guardar = []
     for val1,val2,val3 in zip(id,ext,formato): 
         guardar.append(val1 +':'+val3 + ':'+val2)

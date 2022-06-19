@@ -41,7 +41,7 @@ async def process(url):
         file_parts.append(part_file_name)
         tasks.append(download(url, {'Range': f'bytes={sizes[0]}-{sizes[1]}'}, part_file_name))
     await asyncio.gather(*tasks)
-    with open(filename, 'wb') as wfd:
+    with open('./Wachu985/'+filename, 'wb') as wfd:
         for f in file_parts:
             with open(f, 'rb') as fd:
                 shutil.copyfileobj(fd, wfd)
